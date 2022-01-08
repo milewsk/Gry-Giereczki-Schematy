@@ -1,0 +1,12 @@
+@media only screen and (min-width: 1024px) {
+}
+/*end of media query*/
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+.large-3 {
+  width: 25%;
+}
