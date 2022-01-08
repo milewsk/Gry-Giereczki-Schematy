@@ -36,9 +36,12 @@ body {
 }
 
 /* header rules */
-nav {
+.nav {
+  background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: auto 1000px;
   display: flex;
-  margin-top: 10px;
   margin-bottom: 20px;
   position: sticky;
   top: 0;
@@ -52,7 +55,7 @@ nav {
   height: 60px;
 }
 
-nav button {
+.nav-button {
   color: #fbcacd;
   font-weight: 300;
   background: none;
@@ -66,16 +69,17 @@ nav button {
   padding: 10px;
 }
 
-nav button.normal {
+.basic-nav-button {
   border: solid;
 }
-nav button.normal:hover {
+
+.basic-nav-button:hover {
   background-color: #fbcacd;
   border-color: #fbcacd;
   color: #bf2e34;
 }
 
-nav button.main {
+.main-button {
   font-size: 1.5rem;
 }
 
