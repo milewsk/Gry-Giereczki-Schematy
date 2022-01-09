@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="small.css" />
+    <link rel="stylesheet" href="medium.css" />
+    <link rel="stylesheet" href="large.css" />
+    <link rel="stylesheet" href="user_panel.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="user_panel.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Panel Użytkownika</title>
+  </head>
+
+  <body>
+    <nav class="nav">
+      <div class="nav-button">
+        <a href="main_page-logged_in.html"
+          ><button class="nav-button main-button">gryGiereczki</button></a
+        >
+        <a href="games.html"
+          ><button class="nav-button basic-nav-button">Gry</button></a
+        >
+        <a href="ranking.html"
+          ><button class="nav-button basic-nav-button">Ranking</button></a
+          >
+        <a href="competitions.html"
+          ><button class="nav-button basic-nav-button">Konkursy</button></a
+        >
+        <a href="games_history.html">
+          <button class="nav-button basic-nav-button">Historia</button></a
+        >
+        <a href="achievements.html"
+          ><button class="nav-button basic-nav-button">Osiągnięcia</button></a
+        >
+      </div>
+      <div>
+        <a href="user_panel.html"
+          ><button class="nav-button basic-nav-button">
+            <img class="logo" src="logo.png" alt="avatar" /> Moje konto
+          </button></a
+        >
+      </div>
+    </nav>
+    <main>
+      <section class="side-menu">
+        <ul>
+          <a
+            class="side-option-button"
+            id="userData"
+            onclick="change_option(id)"
+            >Moje dane</a
+          >
+        </br>
+          <a
+            class="side-option-button"
+            id="editProfile"
+            onclick="change_option(id)"
+            >Edytuj profil</a
+          >
+        </br>
+            <a class="side-option-button" id="gameHistory" onclick="change_option(id)"
+              >Historia rozgrywek</a
+            >
+          </br>
+            <a class="side-option-button" id="ranking" onclick="change_option(id)">Miejsca w rankingach</a>
+          </br>
+          <a class="side-option-button" id="userFriends" onclick="change_option(id)">Moi znajomi</a>
+        </br>
+          <a class="side-option-button" id="userAchievements" onclick="change_option(id)">Osiągniecia</a>
+        </ul>
+      </section>
+      <section class="main-section" id="mainSection"></section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,186 @@
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
+}
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  margin: auto;
+  max-width: 1100px;
+  min-height: 100%;
+  color: #fbcacd;
+}
+
+/* grid rules */
+.row {
+  clear: both;
+}
+
+.column {
+  float: left;
+  padding: 0 2vw;
+  margin: 0 0 0.75rem 0;
+}
+
+.small-12 {
+  width: 100;
+}
+
+/* header rules */
+.nav {
+  background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: auto 1000px;
+  display: flex;
+  margin-bottom: 20px;
+  position: sticky;
+  top: 0;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+}
+
+.nav-button {
+  color: #fbcacd;
+  font-weight: 300;
+  background: none;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 0 0;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-left: 20px;
+  padding: 10px;
+}
+
+.basic-nav-button {
+  border: solid;
+}
+
+.basic-nav-button:hover {
+  background-color: #fbcacd;
+  border-color: #fbcacd;
+  color: #bf2e34;
+}
+.basic-nav-button:visited {
+  background-color: #fbcacd;
+  border-color: #fbcacd;
+  color: #bf2e34;
+}
+
+.main-button {
+  font-size: 1.5rem;
+}
+
+.login-form-popup {
+  display: none;
+  position: fixed;
+  top: 18%;
+  right: 6%;
+  border: 3px solid #fbcacd;
+  border-radius: 5px;
+}
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: #fbcacd;
+  color: #aa2226ca;
+}
+.login-form-button {
+  color: #aa2226ca;
+  border: none;
+  background-color: #fbcacd;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.login-form-button:hover {
+  color: #e7686c;
+}
+
+.baner1 {
+  margin: 0 auto;
+  margin-bottom: 70px;
+  margin-top: 70px;
+  font-weight: 700;
+  font-size: 1.9rem;
+  padding: 10px;
+  width: 100%;
+  height: 400px;
+  column-count: 2;
+  column-gap: 50px;
+}
+
+.baner1-description {
+  text-align: right;
+  word-spacing: 8px;
+  line-height: 1.5;
+}
+.baner1-description-2 {
+  text-align: left;
+  word-spacing: 8px;
+  line-height: 1.5;
+}
+
+.baner1-button {
+  border: solid;
+  border-radius: 5px;
+  background: none;
+  cursor: pointer;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #fbcacd;
+  font-weight: 300;
+  font-size: 1.15rem;
+  padding: 0.8rem;
+  display: flex;
+  justify-content: center;
+}
+
+.baner1-button:hover {
+  background-color: #fbcacd;
+  border-color: #fbcacd;
+  color: #bf2e34;
+}
+
+footer {
+  font-size: 0.9rem;
+  margin-top: 70px;
+  margin-bottom: 15px;
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+footer h2 {
+  font-size: 1.1rem;
+  font-style: italic;
+  text-transform: uppercase;
+  margin: 0.8rem 0.3rem 0;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.signature {
+  font-size: 0.8rem;
+}
