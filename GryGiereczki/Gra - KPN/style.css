@@ -1,0 +1,72 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+section {
+    height: 100vh;
+    background-color: gray;
+    color: white;
+    font-family: sans-serif;
+}
+.score{
+    display: flex;
+    justify-content: space-around;
+    height: 100px;
+    padding-top: 60px;
+    align-items: center;
+}
+.score h2{
+    font-size: 35px;
+}
+.score p {
+    font-size: 30px;
+    text-align: center;
+    padding: 5px;
+}
+.match {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.match h2{
+    text-align: center;
+    font-size: 40px;
+}
+.options, .choices {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px;
+    gap:30px;
+}
+.choices img{
+    border-radius: 50%;
+    height: 160px;
+    width: 160px;
+}
+.options button{
+    width: 160px;
+    height: 60px;
+    background-color:mediumvioletred;
+    color: white;
+    border:none;
+    font-size: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    /*pointer-events: none;*/
+}
+.player-choice{
+    transform: scale(-1, 1) rotate(-60deg);
+}
+.computer-choice{
+    transform: rotate(-60deg);
+}
+div.fadeOut{
+    opacity: 0;
+    pointer-events: none;
+}
+div.FadeIn{
+    opacity: 1;
+    pointer-events: all;
+}
