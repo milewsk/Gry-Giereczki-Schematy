@@ -22,24 +22,61 @@
   </head>
   <body>
     <nav class="nav">
-      <!-- <img class="logo" src="logo.png" alt="gryGiereczki Logo" /> -->
 
       <div class="nav-button">
         <button class="nav-button main-button">gryGiereczki</button>
-        <a href="okno_wyboru_gry.html"
+        <a href="games.html"
           ><button class="nav-button basic-nav-button">Gry</button></a
         >
-        <button class="nav-button basic-nav-button">Ranking</button>
-        <button class="nav-button basic-nav-button">Historia</button>
-        <button class="nav-button basic-nav-button">Konkursy</button>
-        <button class="nav-button basic-nav-button">Osiągnięcia</button>
+        <a href="ranking.html"
+        ><button class="nav-button basic-nav-button">Ranking</button></a
+        >
+        <a href="competitions.html"
+        ><button class="nav-button basic-nav-button">Konkursy</button></a
+      >
       </div>
       <div>
-        <a href="user_panel.html"
-          ><button class="nav-button basic-nav-button">
-            <img class="logo" src="logo.png" alt="avatar" /> Moje konto
-          </button></a
+        <button
+          class="nav-button basic-nav-button open-button"
+          onclick="toggleForm();"
+          id="loginButton"
         >
+          Zaloguj się / Załóż konto
+        </button>
+        <div class="login-form-popup" id="loginForm">
+          <form action="/action_page.php" class="form-container">
+            <h1>Logowanie</h1>
+
+            
+            <input
+              type="text"
+              placeholder="Email"
+              name="email"
+              required
+            />
+
+            
+            <input
+              type="password"
+              placeholder="Hasło"
+              name="psw"
+              required
+            />
+            <div>
+            </br>
+              <button type="submit" class="login-form-button">Zaloguj</button>
+              <button
+                type="button"
+                class="login-form-button"
+                onclick="toggleForm()"
+              >
+                Anuluj
+              </button>
+            </div>
+          </br>
+          <p>Nie masz jeszcze konta?</p><button type="submit" class="login-form-button">Zarejestruj się</button>
+          </form>
+        </div>
       </div>
     </nav>
     <main>

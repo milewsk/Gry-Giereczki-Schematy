@@ -12,10 +12,10 @@ html {
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 300;
   margin: auto;
-  max-width: 1150px;
+  max-width: 1100px;
   min-height: 100%;
   color: #fbcacd;
 }
@@ -62,7 +62,7 @@ body {
   border: none;
   border-radius: 5px;
   padding: 0.5rem 0 0;
-  font-size: 1.1rem;
+  font-size: 1rem;
   cursor: pointer;
   margin-top: 10px;
   margin-left: 20px;
@@ -78,9 +78,39 @@ body {
   border-color: #fbcacd;
   color: #bf2e34;
 }
+.basic-nav-button:visited {
+  background-color: #fbcacd;
+  border-color: #fbcacd;
+  color: #bf2e34;
+}
 
 .main-button {
   font-size: 1.5rem;
+}
+
+.login-form-popup {
+  display: none;
+  position: fixed;
+  top: 18%;
+  right: 6%;
+  border: 3px solid #fbcacd;
+  border-radius: 5px;
+}
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: #fbcacd;
+  color: #aa2226ca;
+}
+.login-form-button {
+  color: #aa2226ca;
+  border: none;
+  background-color: #fbcacd;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.login-form-button:hover {
+  color: #e7686c;
 }
 
 .baner1 {
