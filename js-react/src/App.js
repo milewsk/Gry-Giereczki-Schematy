@@ -5,11 +5,12 @@ import { Home } from "./Home";
 import { User } from "./User";
 import { BrowserRouter, Route, Routes, NavLink } from "react-router-dom";
 import Navbar from "./components/Layout/Navbar";
-import React from "react";
+import React, { useContext } from "react";
 import MainContent from "./components/Layout/MainContent";
 import Footer from "./components/Layout/Footer";
 
 function App() {
+  const loginctx = useContext();
   // 1. zwraca jeden elemnet
   return (
     <BrowserRouter>
