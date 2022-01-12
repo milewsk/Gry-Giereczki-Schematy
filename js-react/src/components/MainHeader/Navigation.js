@@ -1,4 +1,4 @@
-import { useContext } from "react/cjs/react.development";
+import React, { useContext } from "react";
 import AuthContext from "../../store/AuthContext";
 import classes from "./Navigation.module.css";
 

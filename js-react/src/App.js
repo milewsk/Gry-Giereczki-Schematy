@@ -9,9 +9,12 @@ import React, { useContext } from "react";
 import MainContent from "./components/Layout/MainContent";
 import Footer from "./components/Layout/Footer";
 import AuthContext from "./store/AuthContext";
+import Button from "./components/UI/Button/Button";
+import GameContext from "./store/GameContext";
+import Kostka from "./components/Games/Kostka/Kostka";
 
 function App() {
-  const loginctx = useContext(AuthContext);
+  const GameCtx = useContext(GameContext);
   // 1. zwraca jeden elemnet
   return (
     <BrowserRouter>
@@ -29,6 +32,11 @@ function App() {
             </li>
           </ul>
         </nav>
+        <Button onClick={GameCtx.GameNumber(1)}>Gra Kamień papier</Button>
+        <Button onClick={GameCtx.GameNumber(2)}>Gra Kostka</Button>
+        <Button onClick={GameCtx.GameNumber(3)}>Gra 3</Button>
+        {GameCtx.chosenGame == 1 && <div>Gra pierwsza wywołana</div>}
+        <Kostka></Kostka>
         <Routes>
           <Route path="/user" element={<User />} />
           <Route path="/home" element={<Home />} />
