@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\shogi\\OneDrive\\Pulpit\\llaczenie js test\\GryGiereczki\\GryGiereczki.csproj": {}
+    "D:\\praca\\Gry-Giereczki-Schematy\\GryGiereczki\\GryGiereczki.csproj": {}
   },
   "projects": {
-    "C:\\Users\\shogi\\OneDrive\\Pulpit\\llaczenie js test\\GryGiereczki\\GryGiereczki.csproj": {
+    "D:\\praca\\Gry-Giereczki-Schematy\\GryGiereczki\\GryGiereczki.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\shogi\\OneDrive\\Pulpit\\llaczenie js test\\GryGiereczki\\GryGiereczki.csproj",
+        "projectUniqueName": "D:\\praca\\Gry-Giereczki-Schematy\\GryGiereczki\\GryGiereczki.csproj",
         "projectName": "GryGiereczki",
-        "projectPath": "C:\\Users\\shogi\\OneDrive\\Pulpit\\llaczenie js test\\GryGiereczki\\GryGiereczki.csproj",
-        "packagesPath": "C:\\Users\\shogi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\shogi\\OneDrive\\Pulpit\\llaczenie js test\\GryGiereczki\\obj\\",
+        "projectPath": "D:\\praca\\Gry-Giereczki-Schematy\\GryGiereczki\\GryGiereczki.csproj",
+        "packagesPath": "C:\\Users\\Konrad\\.nuget\\packages\\",
+        "outputPath": "D:\\praca\\Gry-Giereczki-Schematy\\GryGiereczki\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\shogi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Konrad\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -109,7 +105,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
         }
       }
     }

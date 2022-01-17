@@ -1,0 +1,12 @@
+.navbar {
+  width: 90%;
+  height: 20%;
+  padding: 2rem;
+
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: space-around;
+  align-items: center;
+
+  background: inherit;
+}
