@@ -5,15 +5,18 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { AuthContextProvider } from "./store/AuthContext";
 import { GameContextProvider } from "./store/GameContext";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <AuthContextProvider>
-      <GameContextProvider>
-        <App />
-      </GameContextProvider>
-    </AuthContextProvider>
-  </React.StrictMode>,
+  <BrowserRouter>
+    <React.StrictMode>
+      <AuthContextProvider>
+        <GameContextProvider>
+          <App />
+        </GameContextProvider>
+      </AuthContextProvider>
+    </React.StrictMode>
+  </BrowserRouter>,
   document.getElementById("root")
 );
 
