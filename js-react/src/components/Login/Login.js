@@ -1,8 +1,15 @@
-import React, { useState, useEffect, useReducer, useContext } from "react";
+import React, {
+  useState,
+  useEffect,
+  useReducer,
+  useContext,
+  Fragment,
+} from "react";
 import AuthContext from "../../store/AuthContext";
 import Card from "../UI/Card/Card";
 import Button from "../UI/Button/Button";
 import classes from "./Login.module.css";
+import { NavLink } from "react-router-dom";
 
 const usernameReducer = (state, action) => {
   if (action.type === "USER_INPUT") {
@@ -69,49 +76,53 @@ const Login = (props) => {
   };
 
   return (
-    <Card className={classes.login}>
-      <form onSubmit={submitHandler}>
-        <h5>Zaloguj się</h5>
-        <div
-          className={`${classes.control} ${
-            usernameState.isValid === false ? classes.invalid : ""
-          }`}
-        >
-          <label htmlFor="username">Nazwa użytkownika</label>
-          <input
-            type="username"
-            id="username"
-            value={usernameState.value}
-            onChange={usernameChangeHandler}
-            onBlur={validateUsernameHandler}
-          />
-        </div>
-        <div
-          className={`${classes.control} ${
-            passwordState.isValid === false ? classes.invalid : ""
-          }`}
-        >
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            value={passwordState.value}
-            onChange={passwordChangeHandler}
-            onBlur={validatePasswordHandler}
-          />
-        </div>
-        <div className={classes.actions}>
-          <Button
-            type="submit"
-            className={classes.btn}
-            disabled={!formIsValid}
-            onClick={authCtx.onLogin}
+    <Fragment>
+      {" "}
+      <Card className={classes.login}>
+        <form onSubmit={submitHandler}>
+          <h5>Zaloguj się</h5>
+          <div
+            className={`${classes.control} ${
+              usernameState.isValid === false ? classes.invalid : ""
+            }`}
           >
-            Zaloguj się
-          </Button>
-        </div>
-      </form>
-    </Card>
+            <label htmlFor="username">Nazwa użytkownika</label>
+            <input
+              type="username"
+              id="username"
+              value={usernameState.value}
+              onChange={usernameChangeHandler}
+              onBlur={validateUsernameHandler}
+            />
+          </div>
+          <div
+            className={`${classes.control} ${
+              passwordState.isValid === false ? classes.invalid : ""
+            }`}
+          >
+            <label htmlFor="password">Hasło</label>
+            <input
+              type="password"
+              id="password"
+              value={passwordState.value}
+              onChange={passwordChangeHandler}
+              onBlur={validatePasswordHandler}
+            />
+          </div>
+          <div className={classes.actions}>
+            <Button
+              type="submit"
+              className={classes.btn}
+              disabled={!formIsValid}
+              onClick={authCtx.onLogin}
+            >
+              Zaloguj się
+            </Button>
+          </div>
+        </form>
+      </Card>
+      <NavLink to="/register">Nie masz jeszcze konta? Zarejestruj się!</NavLink>
+    </Fragment>
   );
 };
 
