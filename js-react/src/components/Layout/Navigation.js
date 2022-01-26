@@ -9,13 +9,15 @@ const Navigation = (props) => {
 
   return (
     <nav className={classes.navigation}>
+      <Fragment>
+        <ul>
+          <li>
+            <NavLink to="/games">Gry</NavLink>
+          </li>
+        </ul>
+      </Fragment>
       {authCtx.isLoggedIn && (
         <Fragment>
-          <ul>
-            <li>
-              <NavLink to="/games">Gry</NavLink>
-            </li>
-          </ul>
           <Button onClick={authCtx.onLogout}>Wyloguj się</Button>
         </Fragment>
       )}

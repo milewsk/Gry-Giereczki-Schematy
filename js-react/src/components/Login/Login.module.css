@@ -46,7 +46,9 @@
 .actions {
   text-align: center;
 }
-
+p {
+  align-self: center;
+}
 @media (min-width: 768px) {
   .control {
     align-items: center;
