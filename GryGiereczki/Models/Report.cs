@@ -1,5 +1,4 @@
-﻿using GryGiereczki.Areas.Identity.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,11 +8,21 @@ namespace GryGiereczki.Models
 {
     public class Report
     {
-        [Key]
-        public string ReportId { get; set; }
-        //public string Id { get; set; }
-        //public User User { get; set; }
+ 
+        //public int Id { get; set; }
+
         [Required, MaxLength(200)]
         public string Description { get; set; }
+
+
+
+        public int ReportUserId { get; set; }       
+        public User ReportUser { get; set; } //osoba zgłaszajaca
+
+        
+        public int ReportedUserId { get; set; }    
+        public User ReporedtUser { get; set; } //osoba zgłoszona
+
+
     }
 }
