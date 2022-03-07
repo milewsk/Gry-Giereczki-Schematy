@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\shogi\\OneDrive\\Pulpit\\połaczone\\GryGiereczki\\GryGiereczki.csproj": {}
+    "C:\\Users\\shogi\\OneDrive\\Pulpit\\git repozytorium aplikacje mobilne\\Gry-Giereczki-Schematy\\GryGiereczki\\GryGiereczki.csproj": {}
   },
   "projects": {
-    "C:\\Users\\shogi\\OneDrive\\Pulpit\\połaczone\\GryGiereczki\\GryGiereczki.csproj": {
+    "C:\\Users\\shogi\\OneDrive\\Pulpit\\git repozytorium aplikacje mobilne\\Gry-Giereczki-Schematy\\GryGiereczki\\GryGiereczki.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\shogi\\OneDrive\\Pulpit\\połaczone\\GryGiereczki\\GryGiereczki.csproj",
+        "projectUniqueName": "C:\\Users\\shogi\\OneDrive\\Pulpit\\git repozytorium aplikacje mobilne\\Gry-Giereczki-Schematy\\GryGiereczki\\GryGiereczki.csproj",
         "projectName": "GryGiereczki",
-        "projectPath": "C:\\Users\\shogi\\OneDrive\\Pulpit\\połaczone\\GryGiereczki\\GryGiereczki.csproj",
+        "projectPath": "C:\\Users\\shogi\\OneDrive\\Pulpit\\git repozytorium aplikacje mobilne\\Gry-Giereczki-Schematy\\GryGiereczki\\GryGiereczki.csproj",
         "packagesPath": "C:\\Users\\shogi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\shogi\\OneDrive\\Pulpit\\połaczone\\GryGiereczki\\obj\\",
+        "outputPath": "C:\\Users\\shogi\\OneDrive\\Pulpit\\git repozytorium aplikacje mobilne\\Gry-Giereczki-Schematy\\GryGiereczki\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -101,6 +101,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[5.0.12, 5.0.12]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
