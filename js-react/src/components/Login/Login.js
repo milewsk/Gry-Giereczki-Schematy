@@ -91,7 +91,7 @@ const Login = (props) => {
     inputBlurrHandler: passwordBlurrHandler,
     hasError: passwordHasError,
   } = useInput((value) => {
-    return true;
+    return value.trim().length > 4;
   });
 
   let formIsValid = false;
