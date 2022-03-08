@@ -10,6 +10,7 @@ import Card from "../UI/Card/Card";
 import Button from "../UI/Button/Button";
 import classes from "./Login.module.css";
 import { NavLink } from "react-router-dom";
+import useInput from "../../hooks/use-input";
 
 const usernameReducer = (state, action) => {
   if (action.type === "USER_INPUT") {
@@ -32,82 +33,135 @@ const passwordReducer = (state, action) => {
 const Login = (props) => {
   const authCtx = useContext(AuthContext);
 
-  const [formIsValid, setFormIsValid] = useState(false);
-  const [usernameState, dispatchUsername] = useReducer(usernameReducer, {
-    value: "",
-    isValid: null,
+  // const [formIsValid, setFormIsValid] = useState(false);
+  // const [usernameState, dispatchUsername] = useReducer(usernameReducer, {
+  //   value: "",
+  //   isValid: null,
+  // });
+  // const [passwordState, dispatchPassword] = useReducer(passwordReducer, {
+  //   value: "",
+  //   isValid: null,
+  // });
+
+  // useEffect(() => {
+  //   const identifier = setTimeout(() => {
+  //     setFormIsValid(usernameState.isValid && passwordState.isValid);
+  //   }, 500);
+  //   return () => {
+  //     clearTimeout(identifier);
+  //   };
+  // }, [usernameState.isValid, passwordState.isValid]);
+
+  // const usernameChangeHandler = (event) => {
+  //   dispatchUsername({ type: "USER_INPUT", value: event.target.value });
+
+  //   setFormIsValid(usernameState.isValid && passwordState.isValid);
+  // };
+
+  // const passwordChangeHandler = (event) => {
+  //   dispatchPassword({ type: "USER_INPUT", value: event.target.value });
+
+  //   setFormIsValid(passwordState.isValid && usernameState.isValid);
+  // };
+
+  // const validateUsernameHandler = () => {
+  //   dispatchUsername({ type: "INPUT_BLUR" });
+  // };
+
+  // const validatePasswordHandler = () => {
+  //   dispatchPassword({ type: "INPUT_BLUR" });
+  // };
+
+  // New content
+
+  const {
+    enteredValue: enteredUsername,
+    isInputValid: isUsernameValid,
+    inputBlurrHandler: usernameBlurrHandler,
+    inputValueHandler: usernameValueHandler,
+    hasError: usernameHasError,
+  } = useInput((value) => {
+    return value.trim().length > 6;
   });
-  const [passwordState, dispatchPassword] = useReducer(passwordReducer, {
-    value: "",
-    isValid: null,
+
+  const {
+    enteredValue: enteredPassword,
+    isInputValid: isPasswordValid,
+    inputValueHandler: passwordValueHandler,
+    inputBlurrHandler: passwordBlurrHandler,
+    hasError: passwordHasError,
+  } = useInput((value) => {
+    return true;
   });
 
-  useEffect(() => {
-    const identifier = setTimeout(() => {
-      setFormIsValid(usernameState.isValid && passwordState.isValid);
-    }, 500);
-    return () => {
-      clearTimeout(identifier);
-    };
-  }, [usernameState.isValid, passwordState.isValid]);
+  let formIsValid = false;
 
-  const usernameChangeHandler = (event) => {
-    dispatchUsername({ type: "USER_INPUT", value: event.target.value });
+  if (isPasswordValid && isUsernameValid) {
+    formIsValid = true;
+  }
 
-    setFormIsValid(usernameState.isValid && passwordState.isValid);
-  };
-
-  const passwordChangeHandler = (event) => {
-    dispatchPassword({ type: "USER_INPUT", value: event.target.value });
-
-    setFormIsValid(passwordState.isValid && usernameState.isValid);
-  };
-
-  const validateUsernameHandler = () => {
-    dispatchUsername({ type: "INPUT_BLUR" });
-  };
-
-  const validatePasswordHandler = () => {
-    dispatchPassword({ type: "INPUT_BLUR" });
-  };
   const submitHandler = (event) => {
     event.preventDefault();
-    authCtx.onLogin(usernameState.value, passwordState.value);
+
+    // if something is wrong don't send and change anything
+    if (!isPasswordValid && !isUsernameValid) {
+      return;
+    }
+
+    // authCtx.onLogin(usernameState.value, passwordState.value);
+    authCtx.onLogin(enteredUsername, enteredPassword);
   };
 
   return (
     <Fragment>
-      {" "}
       <Card className={classes.login}>
         <form onSubmit={submitHandler}>
           <h5>Zaloguj się</h5>
           <div
             className={`${classes.control} ${
-              usernameState.isValid === false ? classes.invalid : ""
+              isUsernameValid === false ? classes.invalid : ""
             }`}
           >
             <label htmlFor="username">Nazwa użytkownika</label>
             <input
               type="username"
               id="username"
+              value={enteredUsername}
+              onChange={usernameValueHandler}
+              onBlur={usernameBlurrHandler}
+            />
+            {usernameHasError && <p>Błąd w login</p>}
+            {/* <label htmlFor="username">Nazwa użytkownika</label>
+            <input
+              type="username"
+              id="username"
               value={usernameState.value}
               onChange={usernameChangeHandler}
               onBlur={validateUsernameHandler}
-            />
+            /> */}
           </div>
           <div
             className={`${classes.control} ${
-              passwordState.isValid === false ? classes.invalid : ""
+              isPasswordValid === false ? classes.invalid : ""
             }`}
           >
             <label htmlFor="password">Hasło</label>
             <input
               type="password"
               id="password"
+              value={enteredPassword}
+              onChange={passwordValueHandler}
+              onBlur={passwordBlurrHandler}
+            />
+            {passwordHasError && <p>Błąd w login</p>}
+            {/* <label htmlFor="password">Hasło</label>
+            <input
+              type="password"
+              id="password"
               value={passwordState.value}
               onChange={passwordChangeHandler}
               onBlur={validatePasswordHandler}
-            />
+            /> */}
           </div>
           <div className={classes.actions}>
             <Button
