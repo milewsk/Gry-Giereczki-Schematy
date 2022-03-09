@@ -54,6 +54,8 @@ namespace GryGiereczki
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<AuthMessageSenderOptions>(Configuration);
 
+            services.AddTransient<RegisterService>();
+
             //services.AddRazorPages();
         }
 

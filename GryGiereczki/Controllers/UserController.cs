@@ -1,4 +1,4 @@
-﻿using GryGiereczki.Areas.Identity.Data;
+﻿using GryGiereczki.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -65,9 +65,6 @@ namespace GryGiereczki.Controllers
                    // myCommand.Parameters.AddWithValue("@Name", us.Name);
                    // myCommand.Parameters.AddWithValue("@Lastname", us.Lastname);
                    // myCommand.Parameters.AddWithValue("@Email", us.Email);
-                    myCommand.Parameters.AddWithValue("@UserName", us.UserName);
-                   // myCommand.Parameters.AddWithValue("@BirthDate", us.BirthDate);
-                    myCommand.Parameters.AddWithValue("@PasswordHash", us.PasswordHash);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
                     myReader.Close();
