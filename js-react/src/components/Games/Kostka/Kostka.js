@@ -161,8 +161,9 @@ const Kostka = (props) => {
   }, []);
 
   return (
-    <div className="wrapper">
-      <section className="player player--0 player--active">
+    <div className="container-md" >
+      <div className="row row-cols-2 row-cols-md-3 justify-content-md-around">
+      <section className="player player--0 player--active col order-0 order-md-0">
         <h2 className="name" id="name--0">
           Player 1
         </h2>
@@ -176,13 +177,13 @@ const Kostka = (props) => {
           </p>
         </div>
       </section>
-      <section className="middle_section">
+      <section className="middle_section d-flex flex-md-column col align-items-center order-2 order-md-1 m-auto mt-5">
         <button className="btn btn--new">🔄 New game</button>
-        <img src={dice5} alt="Playing dice" className="dice" />
         <button className="btn btn--roll">🎲 Roll dice</button>
         <button className="btn btn--hold">📥 Hold</button>
+        <img src={dice5} alt="Playing dice" className="dice" />
       </section>
-      <section className="player player--1">
+      <section className="player player--1 col order-1 order-md-2">
         <h2 className="name" id="name--1">
           Player 2
         </h2>
@@ -196,6 +197,7 @@ const Kostka = (props) => {
           </p>
         </div>
       </section>
+      </div>
     </div>
   );
 };

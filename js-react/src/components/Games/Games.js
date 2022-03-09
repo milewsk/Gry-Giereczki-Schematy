@@ -9,7 +9,7 @@ const Games = (props) => {
       <section className={classes.game_picker}>
         <NavLink to="game1">Gra w kamień, <br />papier, nożyce</NavLink>
         <NavLink to="game2">Gra w kostkę</NavLink>
-        <NavLink to="game3">Gra 3</NavLink>
+        <NavLink to="game3">Gra w statki / nadal login</NavLink>
       </section>
       <Outlet></Outlet>
     </Fragment>
