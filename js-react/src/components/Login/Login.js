@@ -123,68 +123,58 @@ const Login = (props) => {
 
   return (
     <Fragment>
-      <Card className={classes.login}>
-        <form onSubmit={submitHandler}>
+      <Card className={`text-center ${classes.login}`}>
+        <form onSubmit={submitHandler} className="d-flex flex-column">
           <h5>Zaloguj się</h5>
           <div
-            className={`${classes.control} ${
+            className={`${classes.control} my-3 ${
               isUsernameValid === false ? classes.invalid : ""
             }`}
           >
-            <label htmlFor="username">Nazwa użytkownika</label>
-            <input
-              type="username"
-              id="username"
-              value={enteredUsername}
-              onChange={usernameValueHandler}
-              onBlur={usernameBlurrHandler}
-            />
-            {usernameHasError && <p>Błąd w login</p>}
-            {/* <label htmlFor="username">Nazwa użytkownika</label>
-            <input
-              type="username"
-              id="username"
-              value={usernameState.value}
-              onChange={usernameChangeHandler}
-              onBlur={validateUsernameHandler}
-            /> */}
+            <div className="form-floating mb-3">
+              <input 
+                type="username" 
+                className="form-control" 
+                id="username" 
+                placeholder="name@example.com" 
+                value={enteredUsername}
+                onChange={usernameValueHandler}
+                onBlur={usernameBlurrHandler}/>
+              <label htmlFor="floatingInput">Nazwa użytkownika</label>
+            </div>
+            {/* {usernameHasError && <p>Błąd w login</p>} */}
+            <div className="form-floating">
+              <input 
+                type="password" 
+                className="form-control" 
+                id="password" 
+                value={enteredPassword}
+                onChange={passwordValueHandler}
+                onBlur={passwordBlurrHandler}
+                placeholder="Password"/>
+              <label htmlFor="floatingPassword">Password</label>
+            </div>
+            {/* {usernameHasError && <p>Błąd w login</p>} */}
           </div>
           <div
             className={`${classes.control} ${
               isPasswordValid === false ? classes.invalid : ""
             }`}
           >
-            <label htmlFor="password">Hasło</label>
-            <input
-              type="password"
-              id="password"
-              value={enteredPassword}
-              onChange={passwordValueHandler}
-              onBlur={passwordBlurrHandler}
-            />
-            {passwordHasError && <p>Błąd w login</p>}
-            {/* <label htmlFor="password">Hasło</label>
-            <input
-              type="password"
-              id="password"
-              value={passwordState.value}
-              onChange={passwordChangeHandler}
-              onBlur={validatePasswordHandler}
-            /> */}
           </div>
           <div className={classes.actions}>
-            <Button
+            <button
               type="submit"
-              className={classes.btn}
+              className={`btn ${classes.btn_login}`}
               disabled={!formIsValid}
               onClick={authCtx.onLogin}
             >
               Zaloguj się
-            </Button>
+            </button>
           </div>
         </form>
       </Card>
-      <p>Nie masz jeszcze konta?<NavLink to="/register"> Zarejestruj się!</NavLink></p>
+      <p className="text-center">Nie masz jeszcze konta?<NavLink to="/register"> Zarejestruj się!</NavLink></p>
     </Fragment>
   );
 };

@@ -97,28 +97,28 @@ const KPN = (props) => {
         }
     },[]);
     return (
-        <section className="game">
-            <div className="score">
-                <div className="player-score">
-                    <h2>Użytkownik</h2>
-                    <p>0</p>
+        <section className="container-fluid game text-center">
+            <div className="score row justify-content-between py-5 py-md-3 g-3 m-auto">
+                <div className="player-score col ">
+                    <h1 className="fw-600">Użytkownik</h1>
+                    <p className="fw-600 fs-2">0</p>
                 </div>
-                <div className="computer-score">
-                    <h2>Komputer</h2>
-                    <p>0</p>
+                <div className="computer-score col">
+                    <h1 className="fw-600">Komputer</h1>
+                    <p className="fw-600 fs-2">0</p>
                 </div>
             </div>
 
-            <div className="match FadeOut">
+            <div className="row match FadeOut m-auto">
                 <h2>Wybierz opcję, aby rozpocząć</h2>
                 <div className="choices">
                     <img className="player-choice"src={r}/>
                     <img className="computer-choice"src={p}/>
                 </div>
                 <div className="options">
-                    <button className="rock" value="r">Kamień</button>
-                    <button className="paper" value="p">Papier</button>
-                    <button className="scissors" value="s">Nożyce</button>
+                    <button className="btn rock" value="r">Kamień</button>
+                    <button className="btn paper" value="p">Papier</button>
+                    <button className="btn scissors" value="s">Nożyce</button>
                 </div>
             </div>
     </section>
