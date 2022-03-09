@@ -978,3 +978,4 @@ C:\Users\shogi\OneDrive\Pulpit\git repozytorium aplikacje mobilne\Gry-Giereczki-
 C:\Users\shogi\OneDrive\Pulpit\git repozytorium aplikacje mobilne\Gry-Giereczki-Schematy\GryGiereczki\obj\Debug\net5.0\ref\GryGiereczki.dll
 C:\Users\shogi\OneDrive\Pulpit\git repozytorium aplikacje mobilne\Gry-Giereczki-Schematy\GryGiereczki\obj\Debug\net5.0\GryGiereczki.pdb
 C:\Users\shogi\OneDrive\Pulpit\git repozytorium aplikacje mobilne\Gry-Giereczki-Schematy\GryGiereczki\obj\Debug\net5.0\GryGiereczki.genruntimeconfig.cache
+C:\Users\shogi\OneDrive\Pulpit\połaczone\GryGiereczki\bin\Debug\net5.0\BCrypt.Net-Next.dll

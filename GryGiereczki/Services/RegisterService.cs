@@ -28,12 +28,12 @@ namespace GryGiereczki.Services
                 Lastname = user.Lastname,
                 DateOfBirth = user.DateOfBirth
             };
-            _context.User.Add(_user);
+            _context.Users.Add(_user);
             _context.SaveChanges();
             
 
         }
         
-        public List<User> Test() => _context.User.ToList();
+       // public List<User> Test() => _context.User.ToList();
     }
 }

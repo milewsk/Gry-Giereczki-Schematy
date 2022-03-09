@@ -21,10 +21,12 @@ namespace GryGiereczki.Data
         public DbSet<GameHistory> GameHistories { get; set; }
         public DbSet<Report> Reports { get; set; }
         public DbSet<Blocked> Blockeds { get; set; }
-        public DbSet<User> User { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>(entity => { entity.HasIndex(e => e.Email).IsUnique(); }); //unikalny email
+            modelBuilder.Entity<User>(entity => { entity.HasIndex(e => e.Nick).IsUnique(); }); //unikalny nick
             modelBuilder.Entity<Friend>().HasKey(kp => new { kp.UserAId, kp.UserBId });
             modelBuilder.Entity<Blocked>().HasKey(kp => new { kp.UserAId, kp.UserBId });
             modelBuilder.Entity<Report>().HasKey(kp => new { kp.ReportUserId, kp.ReportedUserId });

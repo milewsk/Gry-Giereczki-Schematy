@@ -20,8 +20,8 @@ namespace GryGiereczki.Controllers
         [HttpGet] // zrobilem tylko zeby przetestować wyświatlnie
         public IActionResult Test()
         {
-             var test = _RegisterService.Test();
-            return  Ok(test);
+           //  var test = _RegisterService.Test();
+            return  Ok();
         }
 
         [HttpPost]
