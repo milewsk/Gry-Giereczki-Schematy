@@ -12,12 +12,21 @@ import classes from "./Login.module.css";
 import { NavLink } from "react-router-dom";
 import useInput from "../../hooks/use-input";
 
+// const usernameReducer = (state, action) => {
+//   if (action.type === "USER_INPUT") {
+//     return { value: action.value, isValid: action.value.includes("@") };
+//   }
+//   if (action.type === "INPUT_BLUR") {
+//     return { value: state.value, isValid: state.value.includes("@") };
+//   }
+// };
+
 const usernameReducer = (state, action) => {
   if (action.type === "USER_INPUT") {
-    return { value: action.value, isValid: action.value.includes("@") };
+    return { value: action.value, isValid: action.value.trim().length > 6 };
   }
   if (action.type === "INPUT_BLUR") {
-    return { value: state.value, isValid: state.value.includes("@") };
+    return { value: state.value, isValid: state.value.trim().length > 6 };
   }
 };
 
@@ -175,7 +184,7 @@ const Login = (props) => {
           </div>
         </form>
       </Card>
-      <NavLink to="/register">Nie masz jeszcze konta? Zarejestruj się!</NavLink>
+      <p>Nie masz jeszcze konta?<NavLink to="/register"> Zarejestruj się!</NavLink></p>
     </Fragment>
   );
 };
