@@ -45,6 +45,7 @@ namespace GryGiereczki
 
 
             services.AddControllers();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(

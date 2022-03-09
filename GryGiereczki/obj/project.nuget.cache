@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "KYgFjV1l0FskKa7IFxGCg8sHD3/uich150a1am3yZcXr3G62UfjWzL6YPSDtWLB1xyXU3O3AWhGORStmqgp4fA==",
+  "dgSpecHash": "UDG3bobc2IVZNTVHm2wz6xW+3hqgy0kCh72EMPTwSo6iEwvQTLpve5F3mMxM2apRQHHg8o76uReF7FCES2hFRg==",
   "success": true,
   "projectFilePath": "C:\\Users\\shogi\\OneDrive\\Pulpit\\połaczone\\GryGiereczki\\GryGiereczki.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\shogi\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\shogi\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.21\\microsoft.aspnetcore.cryptography.internal.3.1.21.nupkg.sha512",
     "C:\\Users\\shogi\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.21\\microsoft.aspnetcore.cryptography.keyderivation.3.1.21.nupkg.sha512",
     "C:\\Users\\shogi\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\3.1.12\\microsoft.aspnetcore.diagnostics.entityframeworkcore.3.1.12.nupkg.sha512",
