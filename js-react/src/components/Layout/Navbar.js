@@ -5,7 +5,7 @@ import Navigation from "./Navigation";
 const Navbar = (props) => {
   return (
     <header>
-      <h1>Logo</h1>
+      <h1 className="me-5">Logo</h1>
       <Navigation></Navigation>
     </header>
   );

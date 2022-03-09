@@ -1,83 +1,64 @@
-* {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-}
-
 .game {
-    display: flex;
-    flex-direction: column;
-    justify-items: top;
-    align-items: center;
-    height: 100%;
     color: white;
     background-color: rgba(255, 255, 255, 0.35);
-
     backdrop-filter: blur(200px);
-    filter: blur();
-
+    font-weight: 700;
 }
-.score{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height: 100px;
-    padding: 6rem;
-    gap: 4rem;
-    align-items:center;
+.row {
+    width: fit-content;
 }
-.score h2{
-    font-size: 35px;
+.fw-600 {
+    font-weight:600!important;
 }
-.score p {
-    font-size: 30px;
-    text-align: center;
-    padding: 5px;
+.g-3 {
+    gap: 3rem;
+}
+.fs-2 {
+    font-size: 2rem;
 }
 .match {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-self: center;
-    /* transform: translate(-50%, -50%); */
-}
-.match h2{
-    text-align: center;
-    font-size: 40px;
 }
 .options, .choices {
     display: flex;
     justify-content: space-around;
-    padding: 40px;
-    gap:30px;
+    padding: 2rem 1rem;
+}
+.options {
+    gap: 1rem;
+}
+.choices {
+    gap: 2rem;
 }
 .choices img{
     border-radius: 50%;
-    height: 160px;
-    width: 160px;
+    height: 8rem;
+    width: 8rem;
 }
-.options button{
-    width: 160px;
-    height: 60px;
-    background-color:mediumvioletred;
-    color: white;
+.btn{
+    color: #444;
     border:none;
-    font-size: 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    /*pointer-events: none;*/
+    background: none;
+    font-size: 1rem;
+    border-radius: 3rem;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    background-color: rgba(255, 255, 255, 0.6);
+  
+    padding: 0.6rem 1.5rem;
+    box-shadow: 0 1.75rem 3.5rem rgba(0, 0, 0, 0.1);
 }
+.btn:active {
+    transform: scale(1.1);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+  }
+
 .player-choice{
     transform: scale(-1, 1) rotate(-60deg);
 }
 .computer-choice{
     transform: rotate(-60deg);
-}
-div.fadeOut{
-    opacity: 0;
-    pointer-events: none;
-}
-div.FadeIn{
-    opacity: 1;
-    pointer-events: all;
 }
