@@ -177,7 +177,7 @@ const Kostka = (props) => {
           </p>
         </div>
       </section>
-      <section className="middle_section d-flex flex-md-column col align-items-center order-2 order-md-1 m-auto mt-5">
+      <section className="middle_section d-flex flex-md-column flex-wrap justify-content-center col align-items-center order-2 order-md-1 m-auto mt-5">
         <button className="btn btn--new">🔄 New game</button>
         <button className="btn btn--roll">🎲 Roll dice</button>
         <button className="btn btn--hold">📥 Hold</button>

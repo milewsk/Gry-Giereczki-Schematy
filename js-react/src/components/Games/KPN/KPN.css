@@ -4,8 +4,8 @@
     backdrop-filter: blur(200px);
     font-weight: 700;
 }
-.row {
-    width: fit-content;
+.w-fit-content {
+    width: fit-content!important;
 }
 .fw-600 {
     font-weight:600!important;
@@ -25,7 +25,8 @@
 .options, .choices {
     display: flex;
     justify-content: space-around;
-    padding: 2rem 1rem;
+    flex-wrap: wrap;
+    /* padding: 2rem 1rem; */
 }
 .options {
     gap: 1rem;

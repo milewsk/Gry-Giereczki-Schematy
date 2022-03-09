@@ -98,7 +98,7 @@ const KPN = (props) => {
     },[]);
     return (
         <section className="container-fluid game text-center">
-            <div className="score row justify-content-between py-5 py-md-3 g-3 m-auto">
+            <div className="score w-fit-content row justify-content-between py-5 py-md-3 g-2 m-auto">
                 <div className="player-score col ">
                     <h1 className="fw-600">Użytkownik</h1>
                     <p className="fw-600 fs-2">0</p>
@@ -109,13 +109,13 @@ const KPN = (props) => {
                 </div>
             </div>
 
-            <div className="row match FadeOut m-auto">
+            <div className="row match w-fit-content FadeOut m-auto">
                 <h2>Wybierz opcję, aby rozpocząć</h2>
-                <div className="choices">
+                <div className="choices py-4">
                     <img className="player-choice"src={r}/>
                     <img className="computer-choice"src={p}/>
                 </div>
-                <div className="options">
+                <div className="options py-4">
                     <button className="btn rock" value="r">Kamień</button>
                     <button className="btn paper" value="p">Papier</button>
                     <button className="btn scissors" value="s">Nożyce</button>
