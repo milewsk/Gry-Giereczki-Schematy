@@ -140,7 +140,7 @@ const Login = (props) => {
                 value={enteredUsername}
                 onChange={usernameValueHandler}
                 onBlur={usernameBlurrHandler}/>
-              <label htmlFor="floatingInput">Nazwa użytkownika</label>
+              <label htmlFor="username">Nazwa użytkownika</label>
             </div>
             {/* {usernameHasError && <p>Błąd w login</p>} */}
             <div className="form-floating">
@@ -152,7 +152,7 @@ const Login = (props) => {
                 onChange={passwordValueHandler}
                 onBlur={passwordBlurrHandler}
                 placeholder="Password"/>
-              <label htmlFor="floatingPassword">Password</label>
+              <label htmlFor="password">Hasło</label>
             </div>
             {/* {usernameHasError && <p>Błąd w login</p>} */}
           </div>
@@ -163,14 +163,14 @@ const Login = (props) => {
           >
           </div>
           <div className={classes.actions}>
-            <button
+            <Button
               type="submit"
-              className={`btn ${classes.btn_login}`}
+              className={`${classes.btn_login}`}
               disabled={!formIsValid}
               onClick={authCtx.onLogin}
             >
               Zaloguj się
-            </button>
+            </Button>
           </div>
         </form>
       </Card>

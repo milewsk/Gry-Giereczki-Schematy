@@ -1,0 +1,11 @@
+.form-floating label {
+    font-weight: bold;
+    color: #464646!important;
+}
+
+.form-floating .form-control {
+border: 1px solid #ccc!important;
+background-color: #edeaee;
+opacity: .5;
+}
+
