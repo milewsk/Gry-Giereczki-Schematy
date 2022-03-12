@@ -2,7 +2,7 @@ import { useEffect, useState, useReducer, useContext, Fragment } from "react";
 import AuthContext from "../../store/AuthContext";
 import Card from "../UI/Card/Card";
 import Button from "../UI/Button/Button";
-import classes from "./Register.module.css";
+import classes from "./Login.module.css";
 import { NavLink } from "react-router-dom";
 
 const usernameReducer = (state, action) => {
@@ -71,41 +71,48 @@ const Register = (props) => {
 
   return (
     <Fragment>
-      <Card className={classes.login}>
-        <form onSubmit={submitHandler}>
+      <Card className={`text-center ${classes.login}`}>
+        <form onSubmit={submitHandler} className="d-flex flex-column">
           <h5>Zarejestruj się</h5>
           <div
-            className={`${classes.control} ${
+            className={`${classes.control} my-3 ${
               usernameState.isValid === false ? classes.invalid : ""
             }`}
           >
-            <label htmlFor="username">Nazwa użytkownika</label>
-            <input
-              type="username"
-              id="username"
-              value={usernameState.value}
-              onChange={usernameChangeHandler}
-              onBlur={validateUsernameHandler}
-            />
+            <div className="form-floating mb-3">
+              <input 
+                type="username" 
+                className="form-control" 
+                id="username" 
+                placeholder="name@example.com" 
+                value={usernameState.value}
+                onChange={usernameChangeHandler}
+                onBlur={validateUsernameHandler}
+                />
+              <label htmlFor="username">Nazwa użytkownika</label>
+            </div>
+            <div className="form-floating">
+              <input 
+                type="password" 
+                className="form-control" 
+                id="password" 
+                value={passwordState.value}
+                onChange={passwordChangeHandler}
+                onBlur={validatePasswordHandler}
+                placeholder="Password"/>
+              <label htmlFor="password">Hasło</label>
+            </div>
           </div>
           <div
             className={`${classes.control} ${
               passwordState.isValid === false ? classes.invalid : ""
             }`}
           >
-            <label htmlFor="password">Hasło</label>
-            <input
-              type="password"
-              id="password"
-              value={passwordState.value}
-              onChange={passwordChangeHandler}
-              onBlur={validatePasswordHandler}
-            />
           </div>
           <div className={classes.actions}>
             <Button
               type="submit"
-              className={classes.btn}
+              className={`${classes.btn_login}`}
               disabled={!formIsValid}
               onClick={authCtx.onLogin}
             >
@@ -114,7 +121,7 @@ const Register = (props) => {
           </div>
         </form>
       </Card>
-      <p>Posiadasz już konto?<NavLink to="/login"> Zaloguj się</NavLink></p>
+      <p className="text-center">Posiadasz już konto?<NavLink to="/login"> Zaloguj się</NavLink></p>
     </Fragment>
   );
 };
