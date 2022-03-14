@@ -6,5 +6,7 @@ namespace GryGiereczki.Data
     {
         User Create(User user);
         User GetByEmail(string emial);
+        User GetByNick(string userName);
+        User GetById(int id);
     }
 }

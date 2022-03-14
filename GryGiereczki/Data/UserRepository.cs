@@ -22,5 +22,15 @@ namespace GryGiereczki.Data
         {
             return _context.Users.FirstOrDefault(u=>u.Email == emial);
         }
+
+        public User GetById(int id)
+        {
+            return _context.Users.FirstOrDefault(u => u.Id == id);
+        }
+
+        public User GetByNick(string nick)
+        {
+            return _context.Users.FirstOrDefault(u => u.Nick == nick);
+        }
     }
 }

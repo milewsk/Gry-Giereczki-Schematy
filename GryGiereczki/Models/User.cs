@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,10 +10,13 @@ namespace GryGiereczki.Models
 {
     public class User
     {
+        [JsonIgnore]
         public int Id { get; set; }
         public string Nick { get; set; }
+        [JsonIgnore]
         public string Password { get; set; }
         [NotMapped]
+        [JsonIgnore]
         public string ConfirmPassword { get; set; }
         public string Email { get; set; }
         public string Name { get; set; }

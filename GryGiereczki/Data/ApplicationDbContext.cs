@@ -73,7 +73,7 @@ namespace GryGiereczki.Data
 
 
 
-            modelBuilder.Entity<GameHistory>() 
+            modelBuilder.Entity<GameHistory>()
                 .HasOne(b => b.Game)
                 .WithMany(ba => ba.GameHistories)
                 .HasForeignKey(bi => bi.GameId);
