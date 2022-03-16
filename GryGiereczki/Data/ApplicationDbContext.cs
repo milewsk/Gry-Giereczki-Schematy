@@ -1,5 +1,4 @@
-﻿using GryGiereczki.Areas.Identity.Data;
-using GryGiereczki.Models;
+﻿using GryGiereczki.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,60 +16,73 @@ namespace GryGiereczki.Data
         public ApplicationDbContext() { }
 
 
-        public DbSet<Favourite> Favourites { get; set; }
         public DbSet<Friend> Friends { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<GameHistory> GameHistories { get; set; }
         public DbSet<Report> Reports { get; set; }
-        public object User { get; internal set; }
+        public DbSet<Blocked> Blockeds { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Game>().HasKey(m => m.GameId);
-            modelBuilder.Entity<Report>().HasKey(m => m.ReportId);
-            modelBuilder.Entity<GameHistory>().HasKey(m => m.GameHistoryId);
-            modelBuilder.Entity<Favourite>().HasKey(kp => new { kp.Id, kp.GameId });
-            modelBuilder.Entity<Friend>().HasKey(kp => new { kp.AId, kp.BId });
-
+            modelBuilder.Entity<User>(entity => { entity.HasIndex(e => e.Email).IsUnique(); }); //unikalny email
+            modelBuilder.Entity<User>(entity => { entity.HasIndex(e => e.Nick).IsUnique(); }); //unikalny nick
+            modelBuilder.Entity<Friend>().HasKey(kp => new { kp.UserAId, kp.UserBId });
+            modelBuilder.Entity<Blocked>().HasKey(kp => new { kp.UserAId, kp.UserBId });
+            modelBuilder.Entity<Report>().HasKey(kp => new { kp.ReportUserId, kp.ReportedUserId });
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<User>()
-                .HasMany(b => b.Reports)
-                .WithOne();
 
-            modelBuilder.Entity<Favourite>()
-                .HasOne(bc => bc.User)
-                .WithMany(b => b.Favourite)
-                .HasForeignKey(bc => bc.Id);
-            modelBuilder.Entity<Favourite>()
-                .HasOne(bc => bc.Game)
-                .WithMany(b => b.Favourite)
-                .HasForeignKey(bc => bc.GameId);
-            modelBuilder.Entity<GameHistory>()
-                .HasOne(bc => bc.User)
-                .WithMany(b => b.GameHistory)
-                .HasForeignKey(bc => bc.Id);
-            modelBuilder.Entity<GameHistory>()
-                .HasOne(bc => bc.Game)
-                .WithMany(b => b.GameHistory)
-                .HasForeignKey(bc => bc.GameId);
-            //modelBuilder.Entity<Friend>()
-            //    .HasOne(b => b.UserA)
-            //    .WithMany(mu => mu.Friends)
-            //    .HasForeignKey(b => b.AId);
-            //modelBuilder.Entity<Friend>()
-            //    .HasOne(b => b.UserB)
-            //    .WithMany(mu => mu.Friends)
-            //    .HasForeignKey(b => b.BId);
-            modelBuilder.Entity<Friend>()
-            .HasOne(f => f.UserA)
-            .WithMany(mu => mu.MainUserFriends)
-            .HasForeignKey(f => f.AId).OnDelete(DeleteBehavior.Restrict);
+            // many to many
+
+            modelBuilder.Entity<Blocked>()
+                .HasOne(b => b.UserA)
+                .WithMany(ba => ba.Blockeds)
+                .HasForeignKey(bi => bi.UserAId).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Blocked>()
+                .HasOne(b => b.UserB)
+                .WithMany(ba => ba.Blockeds2)
+                .HasForeignKey(bi => bi.UserBId);
+
+
+
 
             modelBuilder.Entity<Friend>()
-                .HasOne(f => f.UserB)
-                .WithMany(mu => mu.Friends)
-                .HasForeignKey(f => f.BId);
+                .HasOne(b => b.UserA)
+                .WithMany(ba => ba.Friends)
+                .HasForeignKey(bi => bi.UserAId).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Friend>()
+                .HasOne(b => b.UserB)
+                .WithMany(ba => ba.Friends2)
+                .HasForeignKey(bi => bi.UserBId);
+
+
+
+            modelBuilder.Entity<Report>()
+                .HasOne(b => b.ReportUser)
+                .WithMany(ba => ba.Reports)
+                .HasForeignKey(bi => bi.ReportUserId).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Report>()
+                .HasOne(b => b.ReporedtUser)
+                .WithMany(ba => ba.Reports2)
+                .HasForeignKey(bi => bi.ReportedUserId);
+
+
+
+
+            modelBuilder.Entity<GameHistory>()
+                .HasOne(b => b.Game)
+                .WithMany(ba => ba.GameHistories)
+                .HasForeignKey(bi => bi.GameId);
+
+            modelBuilder.Entity<GameHistory>()
+                .HasOne(b => b.User)
+                .WithMany(ba => ba.GameHistories)
+                .HasForeignKey(bi => bi.UserId);
+
         }
     }
 }

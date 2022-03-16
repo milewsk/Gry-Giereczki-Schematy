@@ -1,11 +1,13 @@
-import MainHeader from "../MainHeader/MainHeader";
 import classes from "./Navbar.module.css";
+import Navigation from "./Navigation";
+
 
 const Navbar = (props) => {
   return (
-    <nav className={classes.navbar}>
-      <MainHeader></MainHeader>
-    </nav>
+    <header>
+      <h1 className="me-5">Logo</h1>
+      <Navigation></Navigation>
+    </header>
   );
 };
 

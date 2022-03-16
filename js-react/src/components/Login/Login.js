@@ -12,12 +12,21 @@ import classes from "./Login.module.css";
 import { NavLink } from "react-router-dom";
 import useInput from "../../hooks/use-input";
 
+// const usernameReducer = (state, action) => {
+//   if (action.type === "USER_INPUT") {
+//     return { value: action.value, isValid: action.value.includes("@") };
+//   }
+//   if (action.type === "INPUT_BLUR") {
+//     return { value: state.value, isValid: state.value.includes("@") };
+//   }
+// };
+
 const usernameReducer = (state, action) => {
   if (action.type === "USER_INPUT") {
-    return { value: action.value, isValid: action.value.includes("@") };
+    return { value: action.value, isValid: action.value.trim().length > 6 };
   }
   if (action.type === "INPUT_BLUR") {
-    return { value: state.value, isValid: state.value.includes("@") };
+    return { value: state.value, isValid: state.value.trim().length > 6 };
   }
 };
 
@@ -114,59 +123,49 @@ const Login = (props) => {
 
   return (
     <Fragment>
-      <Card className={classes.login}>
-        <form onSubmit={submitHandler}>
+      <Card className={`text-center ${classes.login}`}>
+        <form onSubmit={submitHandler} className="d-flex flex-column">
           <h5>Zaloguj się</h5>
           <div
-            className={`${classes.control} ${
+            className={`${classes.control} my-3 ${
               isUsernameValid === false ? classes.invalid : ""
             }`}
           >
-            <label htmlFor="username">Nazwa użytkownika</label>
-            <input
-              type="username"
-              id="username"
-              value={enteredUsername}
-              onChange={usernameValueHandler}
-              onBlur={usernameBlurrHandler}
-            />
-            {usernameHasError && <p>Błąd w login</p>}
-            {/* <label htmlFor="username">Nazwa użytkownika</label>
-            <input
-              type="username"
-              id="username"
-              value={usernameState.value}
-              onChange={usernameChangeHandler}
-              onBlur={validateUsernameHandler}
-            /> */}
+            <div className="form-floating mb-3">
+              <input 
+                type="username" 
+                className="form-control" 
+                id="username" 
+                placeholder="name@example.com" 
+                value={enteredUsername}
+                onChange={usernameValueHandler}
+                onBlur={usernameBlurrHandler}/>
+              <label htmlFor="username">Nazwa użytkownika</label>
+            </div>
+            {/* {usernameHasError && <p>Błąd w login</p>} */}
+            <div className="form-floating">
+              <input 
+                type="password" 
+                className="form-control" 
+                id="password" 
+                value={enteredPassword}
+                onChange={passwordValueHandler}
+                onBlur={passwordBlurrHandler}
+                placeholder="Password"/>
+              <label htmlFor="password">Hasło</label>
+            </div>
+            {/* {usernameHasError && <p>Błąd w login</p>} */}
           </div>
           <div
             className={`${classes.control} ${
               isPasswordValid === false ? classes.invalid : ""
             }`}
           >
-            <label htmlFor="password">Hasło</label>
-            <input
-              type="password"
-              id="password"
-              value={enteredPassword}
-              onChange={passwordValueHandler}
-              onBlur={passwordBlurrHandler}
-            />
-            {passwordHasError && <p>Błąd w login</p>}
-            {/* <label htmlFor="password">Hasło</label>
-            <input
-              type="password"
-              id="password"
-              value={passwordState.value}
-              onChange={passwordChangeHandler}
-              onBlur={validatePasswordHandler}
-            /> */}
           </div>
           <div className={classes.actions}>
             <Button
               type="submit"
-              className={classes.btn}
+              className={`${classes.btn_login}`}
               disabled={!formIsValid}
               onClick={authCtx.onLogin}
             >
@@ -175,7 +174,7 @@ const Login = (props) => {
           </div>
         </form>
       </Card>
-      <NavLink to="/register">Nie masz jeszcze konta? Zarejestruj się!</NavLink>
+      <p className="text-center">Nie masz jeszcze konta?<NavLink to="/register"> Zarejestruj się!</NavLink></p>
     </Fragment>
   );
 };

@@ -1,5 +1,12 @@
 import { useEffect } from "react/cjs/react.development";
 import "./Kostka.css";
+import dice1 from "./dice-1.png";
+import dice2 from "./dice-2.png";
+import dice3 from "./dice-3.png";
+import dice4 from "./dice-4.png";
+import dice5 from "./dice-5.png";
+import dice6 from "./dice-6.png";
+
 
 const Kostka = (props) => {
   useEffect(() => {
@@ -75,10 +82,11 @@ const Kostka = (props) => {
         //2. podmienić obrazek
         //3. Sprawdzić czy nie jest równa jeden
 
-        let dice_roll = Math.trunc(Math.random() * 6) + 1;
-
+        let dice_roll = Math.trunc(Math.random() * 6 + 1);
+        console.log(dice_roll)
+        let dice_png = [dice1, dice2, dice3, dice4, dice5, dice6]
         dice_el.classList.remove("hidden");
-        dice_el.src = `dice-${dice_roll}.png`;
+        dice_el.src = dice_png[dice_roll - 1]
 
         if (dice_roll !== 1) {
           // właściwy -> dodaj do aktualnego score
@@ -153,8 +161,9 @@ const Kostka = (props) => {
   }, []);
 
   return (
-    <div className="wrapper">
-      <section className="player player--0 player--active">
+    <div className="container-md" >
+      <div className="row row-cols-2 row-cols-md-3 justify-content-md-around">
+      <section className="player player--0 player--active col order-0 order-md-0">
         <h2 className="name" id="name--0">
           Player 1
         </h2>
@@ -168,7 +177,13 @@ const Kostka = (props) => {
           </p>
         </div>
       </section>
-      <section className="player player--1">
+      <section className="middle_section d-flex flex-md-column flex-wrap justify-content-center col align-items-center order-2 order-md-1 m-auto mt-5">
+        <button className="btn btn--new">🔄 New game</button>
+        <button className="btn btn--roll">🎲 Roll dice</button>
+        <button className="btn btn--hold">📥 Hold</button>
+        <img src={dice5} alt="Playing dice" className="dice" />
+      </section>
+      <section className="player player--1 col order-1 order-md-2">
         <h2 className="name" id="name--1">
           Player 2
         </h2>
@@ -182,10 +197,7 @@ const Kostka = (props) => {
           </p>
         </div>
       </section>
-      <img src="dice-5.png" alt="Playing dice" className="dice" />
-      <button className="btn btn--new">🔄 New game</button>
-      <button className="btn btn--roll">🎲 Roll dice</button>
-      <button className="btn btn--hold">📥 Hold</button>
+      </div>
     </div>
   );
 };

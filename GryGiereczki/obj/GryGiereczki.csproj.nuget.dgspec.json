@@ -1,21 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\praca\\Gry-Giereczki-Schematy\\GryGiereczki\\GryGiereczki.csproj": {}
+    "C:\\Users\\mgdle\\WebstormProjects\\Gry-Giereczki-Schematy\\GryGiereczki\\GryGiereczki.csproj": {}
   },
   "projects": {
-    "D:\\praca\\Gry-Giereczki-Schematy\\GryGiereczki\\GryGiereczki.csproj": {
+    "C:\\Users\\mgdle\\WebstormProjects\\Gry-Giereczki-Schematy\\GryGiereczki\\GryGiereczki.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\praca\\Gry-Giereczki-Schematy\\GryGiereczki\\GryGiereczki.csproj",
+        "projectUniqueName": "C:\\Users\\mgdle\\WebstormProjects\\Gry-Giereczki-Schematy\\GryGiereczki\\GryGiereczki.csproj",
         "projectName": "GryGiereczki",
-        "projectPath": "D:\\praca\\Gry-Giereczki-Schematy\\GryGiereczki\\GryGiereczki.csproj",
-        "packagesPath": "C:\\Users\\Konrad\\.nuget\\packages\\",
-        "outputPath": "D:\\praca\\Gry-Giereczki-Schematy\\GryGiereczki\\obj\\",
+        "projectPath": "C:\\Users\\mgdle\\WebstormProjects\\Gry-Giereczki-Schematy\\GryGiereczki\\GryGiereczki.csproj",
+        "packagesPath": "C:\\Users\\mgdle\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mgdle\\WebstormProjects\\Gry-Giereczki-Schematy\\GryGiereczki\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Konrad\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\mgdle\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -40,6 +44,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.12, )"
@@ -82,6 +94,10 @@
               "target": "Package",
               "version": "[4.8.3, )"
             },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.16.0, )"
+            },
             "System.Linq": {
               "target": "Package",
               "version": "[4.3.0, )"
@@ -105,7 +121,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }
