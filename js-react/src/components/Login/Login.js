@@ -11,6 +11,7 @@ import Button from "../UI/Button/Button";
 import classes from "./Login.module.css";
 import { NavLink } from "react-router-dom";
 import useInput from "../../hooks/use-input";
+import useInputSubmit from "../../hooks/use-input-submit";
 
 // const usernameReducer = (state, action) => {
 //   if (action.type === "USER_INPUT") {
@@ -103,6 +104,16 @@ const Login = (props) => {
     return value.trim().length > 4;
   });
 
+  // Submit input
+
+  const {
+    referenceValue: passwordRef,
+    errorOccured: passwordErrorOccured,
+    checkRefValidation: passwordRefValidation,
+  } = useInputSubmit((value) => {
+    return value.trim().length > 4;
+  });
+
   let formIsValid = false;
 
   if (isPasswordValid && isUsernameValid) {
@@ -132,26 +143,28 @@ const Login = (props) => {
             }`}
           >
             <div className="form-floating mb-3">
-              <input 
-                type="username" 
-                className="form-control" 
-                id="username" 
-                placeholder="name@example.com" 
+              <input
+                type="username"
+                className="form-control"
+                id="username"
+                placeholder="name@example.com"
                 value={enteredUsername}
                 onChange={usernameValueHandler}
-                onBlur={usernameBlurrHandler}/>
+                onBlur={usernameBlurrHandler}
+              />
               <label htmlFor="username">Nazwa użytkownika</label>
             </div>
             {/* {usernameHasError && <p>Błąd w login</p>} */}
             <div className="form-floating">
-              <input 
-                type="password" 
-                className="form-control" 
-                id="password" 
+              <input
+                type="password"
+                className="form-control"
+                id="password"
                 value={enteredPassword}
                 onChange={passwordValueHandler}
                 onBlur={passwordBlurrHandler}
-                placeholder="Password"/>
+                placeholder="Password"
+              />
               <label htmlFor="password">Hasło</label>
             </div>
             {/* {usernameHasError && <p>Błąd w login</p>} */}
@@ -160,8 +173,7 @@ const Login = (props) => {
             className={`${classes.control} ${
               isPasswordValid === false ? classes.invalid : ""
             }`}
-          >
-          </div>
+          ></div>
           <div className={classes.actions}>
             <Button
               type="submit"
@@ -174,7 +186,10 @@ const Login = (props) => {
           </div>
         </form>
       </Card>
-      <p className="text-center">Nie masz jeszcze konta?<NavLink to="/register"> Zarejestruj się!</NavLink></p>
+      <p className="text-center">
+        Nie masz jeszcze konta?
+        <NavLink to="/register"> Zarejestruj się!</NavLink>
+      </p>
     </Fragment>
   );
 };
