@@ -18,6 +18,7 @@ const Navigation = (props) => {
       </Fragment>
       {authCtx.isLoggedIn && (
         <Fragment>
+          <NavLink to="/profile">Profil</NavLink>
           <Button onClick={authCtx.onLogout}>Wyloguj się</Button>
         </Fragment>
       )}
