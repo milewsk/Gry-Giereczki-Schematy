@@ -50,6 +50,9 @@
     color: #bf2e34;
 }
 @media (min-width: 768px) {
+    a:hover {
+        color: #ee8d90;
+    }
     .nav-link {
         color: #FFFFFF;
     }
