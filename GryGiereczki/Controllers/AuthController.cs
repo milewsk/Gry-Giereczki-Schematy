@@ -35,11 +35,12 @@ namespace GryGiereczki.Controllers
             {
                 Nick = user.Nick,
                 Password = BCrypt.Net.BCrypt.HashPassword(user.Password),
-                ConfirmPassword = BCrypt.Net.BCrypt.HashPassword(user.ConfirmPassword),
                 Email = user.Email,
                 Name = user.Name,
                 Lastname = user.Lastname,
-                DateOfBirth = user.DateOfBirth
+                DateOfBirth = user.DateOfBirth,
+                Avatar = "test.jpg"
+                
             };
 
 
@@ -107,5 +108,8 @@ namespace GryGiereczki.Controllers
                 message = "success logout"
             });
         }
+
+
+        
     }
 }
