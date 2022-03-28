@@ -1,0 +1,14 @@
+.card {
+    box-shadow: 0 .1rem 1rem #641641d0;
+    height: fit-content;
+    border-radius: 1rem;
+    min-width: 15rem;
+    max-width: 17rem;
+}
+.card img {
+    width: 75%;
+    border-radius: 1rem;
+}
+.card h6 {
+    width: fit-content;
+}

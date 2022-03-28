@@ -31,11 +31,10 @@ const MainContent = (props) => {
       {/* {authCtx.isLoggedIn && ( */}
         <div>
           <Routes>
-            <Route path="games" element={<Games></Games>}>
-              <Route path="game1" element={<KPN></KPN>}></Route>
-              <Route path="game2" element={<Kostka></Kostka>}></Route>
-              <Route path="game3" element={<Login></Login>}></Route>
-            </Route>
+            <Route path="games" element={<Games></Games>}></Route>
+            <Route path="game1" element={<KPN></KPN>}></Route>
+            <Route path="game2" element={<Kostka></Kostka>}></Route>
+            <Route path="game3" element={<Login></Login>}></Route>
             <Route path="profile" element={<Profile></Profile>}>
             <Route path="details" element={<Details></Details>}></Route>
             <Route path="ranking" element={<Ranking></Ranking>}></Route>

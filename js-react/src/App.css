@@ -49,6 +49,9 @@
 .nav-link:focus {
     color: #bf2e34;
 }
+.text-white {
+    color: #FFFFFF;
+}
 @media (min-width: 768px) {
     a:hover {
         color: #ee8d90;
