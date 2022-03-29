@@ -1,4 +1,5 @@
 ﻿using GryGiereczki.Models;
+using GryGiereczki.ViewModels;
 using System.Linq;
 
 namespace GryGiereczki.Data
@@ -20,7 +21,7 @@ namespace GryGiereczki.Data
 
         public User GetByEmail(string emial)
         {
-            return _context.Users.FirstOrDefault(u=>u.Email == emial);
+            return _context.Users.FirstOrDefault(u => u.Email == emial);
         }
 
         public User GetById(int id)
@@ -32,5 +33,12 @@ namespace GryGiereczki.Data
         {
             return _context.Users.FirstOrDefault(u => u.Nick == nick);
         }
+
+        public User SaveUserEdit(User user)
+        {
+            _context.SaveChanges();
+            return user;
+        }
+
     }
 }

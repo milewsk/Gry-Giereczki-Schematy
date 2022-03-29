@@ -16,6 +16,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using GryGiereczki.Services;
 using Newtonsoft.Json.Serialization;
 using GryGiereczki.Controllers;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace GryGiereczki
 {
@@ -69,7 +71,6 @@ namespace GryGiereczki
 
 
             app.UseHttpsRedirection();
-            // app.UseStaticFiles();
 
             app.UseRouting();
 
@@ -101,6 +102,15 @@ namespace GryGiereczki
                 // endpoints.MapRazorPages();
                 endpoints.MapControllers();
             });
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(),"Photos")),
+                RequestPath = "/Photos"
+            });
+
+
         }
     }
 }

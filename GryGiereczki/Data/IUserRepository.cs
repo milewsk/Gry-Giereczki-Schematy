@@ -1,4 +1,5 @@
 ﻿using GryGiereczki.Models;
+using GryGiereczki.ViewModels;
 
 namespace GryGiereczki.Data
 {
@@ -8,5 +9,6 @@ namespace GryGiereczki.Data
         User GetByEmail(string emial);
         User GetByNick(string userName);
         User GetById(int id);
+        User SaveUserEdit(User user);
     }
 }
