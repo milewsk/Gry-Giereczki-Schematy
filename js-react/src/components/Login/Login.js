@@ -4,6 +4,7 @@ import React, {
   useReducer,
   useContext,
   Fragment,
+  useRef,
 } from "react";
 import AuthContext from "../../store/AuthContext";
 import Card from "../UI/Card/Card";
@@ -22,26 +23,31 @@ import useInputSubmit from "../../hooks/use-input-submit";
 //   }
 // };
 
-const usernameReducer = (state, action) => {
-  if (action.type === "USER_INPUT") {
-    return { value: action.value, isValid: action.value.trim().length > 6 };
-  }
-  if (action.type === "INPUT_BLUR") {
-    return { value: state.value, isValid: state.value.trim().length > 6 };
-  }
-};
+// const usernameReducer = (state, action) => {
+//   if (action.type === "USER_INPUT") {
+//     return { value: action.value, isValid: action.value.trim().length > 6 };
+//   }
+//   if (action.type === "INPUT_BLUR") {
+//     return { value: state.value, isValid: state.value.trim().length > 6 };
+//   }
+// };
 
-const passwordReducer = (state, action) => {
-  if (action.type === "USER_INPUT") {
-    return { value: action.value, isValid: action.value.trim().length > 6 };
-  }
-  if (action.type === "INPUT_BLUR") {
-    return { value: state.value, isValid: state.value.trim().length > 6 };
-  }
-};
+// const passwordReducer = (state, action) => {
+//   if (action.type === "USER_INPUT") {
+//     return { value: action.value, isValid: action.value.trim().length > 6 };
+//   }
+//   if (action.type === "INPUT_BLUR") {
+//     return { value: state.value, isValid: state.value.trim().length > 6 };
+//   }
+// };
 
 const Login = (props) => {
   const authCtx = useContext(AuthContext);
+
+  const usernameRef = useRef();
+  const passwordRef = useRef();
+
+  const [isLoading, setIsLoading] = useState(false);
 
   // const [formIsValid, setFormIsValid] = useState(false);
   // const [usernameState, dispatchUsername] = useReducer(usernameReducer, {
@@ -106,14 +112,6 @@ const Login = (props) => {
 
   // Submit input
 
-  const {
-    referenceValue: passwordRef,
-    errorOccured: passwordErrorOccured,
-    checkRefValidation: passwordRefValidation,
-  } = useInputSubmit((value) => {
-    return value.trim().length > 4;
-  });
-
   let formIsValid = false;
 
   if (isPasswordValid && isUsernameValid) {
@@ -122,6 +120,40 @@ const Login = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+
+    const enteredUsername = usernameRef.current.value;
+    const enteredPassword = passwordRef.current.value;
+
+    setIsLoading(true);
+
+    fetch("https://localhost:44342/api/auth/login", {
+      method: "POST",
+      body: JSON.stringify({
+        Nick: enteredUsername,
+        Password: enteredPassword,
+      }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          return response.json().then((data) => {
+            let errorMessage = "Authentication failed";
+
+            throw new Error(errorMessage);
+          });
+        }
+      })
+      .then((data) => {
+        if (data.message === "success login") {
+          const expirationTime = new Date(new Date().getTime() + Number(60000));
+
+          authCtx.onLogin(232123, expirationTime.toISOString());
+        }
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
 
     // if something is wrong don't send and change anything
     if (!isPasswordValid && !isUsernameValid) {
