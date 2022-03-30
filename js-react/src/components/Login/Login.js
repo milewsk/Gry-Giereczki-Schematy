@@ -47,6 +47,9 @@ const Login = (props) => {
   const usernameRef = useRef();
   const passwordRef = useRef();
 
+  const [isPasswordValid, setIsPasswordValid] = useState(true);
+  const [isUsernameValid, setIsUsernameValid] = useState(true);
+
   const [isLoading, setIsLoading] = useState(false);
 
   // const [formIsValid, setFormIsValid] = useState(false);
@@ -88,29 +91,14 @@ const Login = (props) => {
   //   dispatchPassword({ type: "INPUT_BLUR" });
   // };
 
-  // New content
-
-  const {
-    enteredValue: enteredUsername,
-    isInputValid: isUsernameValid,
-    inputBlurrHandler: usernameBlurrHandler,
-    inputValueHandler: usernameValueHandler,
-    hasError: usernameHasError,
-  } = useInput((value) => {
-    return value.trim().length > 6;
-  });
-
-  const {
-    enteredValue: enteredPassword,
-    isInputValid: isPasswordValid,
-    inputValueHandler: passwordValueHandler,
-    inputBlurrHandler: passwordBlurrHandler,
-    hasError: passwordHasError,
-  } = useInput((value) => {
-    return value.trim().length > 4;
-  });
-
   // Submit input
+  const onFocusUsernameHandler = () => {
+    setIsUsernameValid(true);
+  };
+
+  const onFocusPasswordHandler = () => {
+    setIsPasswordValid(true);
+  };
 
   let formIsValid = false;
 
@@ -119,10 +107,23 @@ const Login = (props) => {
   }
 
   const submitHandler = (event) => {
-    event.preventDefault();
-
     const enteredUsername = usernameRef.current.value;
     const enteredPassword = passwordRef.current.value;
+
+    if (enteredUsername.length < 4) {
+      setIsUsernameValid(false);
+      return;
+    }
+
+    if (enteredPassword.length < 4) {
+      setIsPasswordValid(false);
+      return;
+    }
+
+    // if something is wrong don't send and change anything
+    if (!isPasswordValid && !isUsernameValid) {
+      return;
+    }
 
     setIsLoading(true);
 
@@ -155,13 +156,10 @@ const Login = (props) => {
         alert(error.message);
       });
 
-    // if something is wrong don't send and change anything
-    if (!isPasswordValid && !isUsernameValid) {
-      return;
-    }
-
     // authCtx.onLogin(usernameState.value, passwordState.value);
     authCtx.onLogin(enteredUsername, enteredPassword);
+
+    setIsLoading(false);
   };
 
   return (
@@ -180,9 +178,8 @@ const Login = (props) => {
                 className="form-control"
                 id="username"
                 placeholder="name@example.com"
-                value={enteredUsername}
-                onChange={usernameValueHandler}
-                onBlur={usernameBlurrHandler}
+                onFocus={onFocusUsernameHandler}
+                ref={usernameRef}
               />
               <label htmlFor="username">Nazwa użytkownika</label>
             </div>
@@ -192,9 +189,8 @@ const Login = (props) => {
                 type="password"
                 className="form-control"
                 id="password"
-                value={enteredPassword}
-                onChange={passwordValueHandler}
-                onBlur={passwordBlurrHandler}
+                ref={passwordRef}
+                onFocus={onFocusPasswordHandler}
                 placeholder="Password"
               />
               <label htmlFor="password">Hasło</label>
