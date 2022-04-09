@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "r80XsBjW6Za0qfukAMj5Hlk8J4v+Z/JlPyX+8W6VP+uzT4ZrEhURZnj/CBJKE90tRM5uW/SAe6e+2eNmrFiFeg==",
+  "dgSpecHash": "zsh+pKuXVO+DSUZC1cxv4TVOBA+cJEu11tmit/Mg2w2uhVBH4Oe9dBq1PFBrtwAuswnVVBHvO1p8bHF9xEGzGA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\shogi\\OneDrive\\Pulpit\\połaczone\\GryGiereczki\\GryGiereczki.csproj",
+  "projectFilePath": "C:\\Users\\shogi\\OneDrive\\Pulpit\\git repozytorium aplikacje mobilne\\Gry-Giereczki-Schematy\\GryGiereczki\\GryGiereczki.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\shogi\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\shogi\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",

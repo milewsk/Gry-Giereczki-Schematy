@@ -70,12 +70,13 @@ namespace GryGiereczki.Controllers
                 HttpOnly = true
             });
 
-            //return Ok(user);
+            return Ok(jwt);
 
-             return Ok(new
+            /* return Ok(new
              {
                  message = "success login"
              });
+            */
         }
 
         [HttpGet("user")]
