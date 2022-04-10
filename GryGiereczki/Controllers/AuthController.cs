@@ -5,6 +5,7 @@ using GryGiereczki.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 
 namespace GryGiereczki.Controllers
 {
@@ -14,10 +15,12 @@ namespace GryGiereczki.Controllers
     {
         private readonly IUserRepository _repository;
         private readonly JwtService _jwtService;
-        public AuthController(IUserRepository repository, JwtService jwtService)
+        private readonly IEmailService _emailService;
+        public AuthController(IUserRepository repository, JwtService jwtService, IEmailService emailService)
         {
             _repository = repository;
             _jwtService = jwtService;
+            _emailService = emailService;
         }
 
         [HttpPost("register")]
@@ -50,6 +53,8 @@ namespace GryGiereczki.Controllers
         [HttpPost("login")]
         public IActionResult Login(LoginVM loginVM)
         {
+            Index();
+
 
             var user = _repository.GetByEmail(loginVM.Email);
             if (user == null)
@@ -110,7 +115,14 @@ namespace GryGiereczki.Controllers
             });
         }
 
+        public async void Index()
+        {
+            UserEmailOptions options = new UserEmailOptions
+            {
+                ToEmails = new List<string>() { "weruka2000@wp.pl" }//grygiereczki.net@gmail.com" }
+            };
 
-        
+            await _emailService.SendTestEmail(options);
+        }
     }
 }
