@@ -42,7 +42,8 @@ namespace GryGiereczki.Controllers
                 Name = user.Name,
                 Lastname = user.Lastname,
                 DateOfBirth = user.DateOfBirth,
-                Avatar = "test.jpg"
+                Avatar = "test.jpg",
+                IsEmailConfirmed = false
                 
             };
 
@@ -53,7 +54,7 @@ namespace GryGiereczki.Controllers
         [HttpPost("login")]
         public IActionResult Login(LoginVM loginVM)
         {
-            Index();
+            //Index();
 
 
             var user = _repository.GetByEmail(loginVM.Email);
@@ -66,6 +67,11 @@ namespace GryGiereczki.Controllers
             if (!BCrypt.Net.BCrypt.Verify(loginVM.Password, user.Password))
             {
                 return BadRequest(new { message = "Invalid password" });
+            }
+
+            if(!user.IsEmailConfirmed)
+            {
+                return BadRequest(new { message = "Email not confirmed" });
             }
 
             var jwt = _jwtService.Generate(user.Id);
@@ -119,7 +125,11 @@ namespace GryGiereczki.Controllers
         {
             UserEmailOptions options = new UserEmailOptions
             {
-                ToEmails = new List<string>() { "weruka2000@wp.pl" }//grygiereczki.net@gmail.com" }
+                ToEmails = new List<string>() { "grygiereczki.net@gmail.com" },
+                PlaceHolders = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("{{UserName}}", "Rafał")
+                }
             };
 
             await _emailService.SendTestEmail(options);

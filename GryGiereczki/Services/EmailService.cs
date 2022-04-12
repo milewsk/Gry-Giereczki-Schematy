@@ -18,8 +18,8 @@ namespace GryGiereczki.Services
 
         public async Task SendTestEmail(UserEmailOptions userEmailOptions)
         {
-            userEmailOptions.Subject = "This is test email from gry giereczki strona";
-            userEmailOptions.Body = GetEmailBody("TestEmail");
+            userEmailOptions.Subject = UpdatePlaceHolders("Hello {{UserName}}, This is test email from gry giereczki", userEmailOptions.PlaceHolders);
+            userEmailOptions.Body = UpdatePlaceHolders(GetEmailBody("TestEmail"), userEmailOptions.PlaceHolders);
 
             await SendEmail(userEmailOptions);
         }
@@ -61,6 +61,22 @@ namespace GryGiereczki.Services
         {
             var body = File.ReadAllText(string.Format(templatePath, templateName));
             return body;
+        }
+
+        private string UpdatePlaceHolders(string text, List<KeyValuePair<string, string>> keyValuePairs)
+        {
+            if(!string.IsNullOrEmpty(text) && keyValuePairs != null)
+            {
+                foreach(var placeholder in keyValuePairs)
+                {
+                    if(text.Contains(placeholder.Key))
+                    {
+                        text = text.Replace(placeholder.Key, placeholder.Value);
+                    }
+                }
+            }
+
+            return text;
         }
     }
 }
