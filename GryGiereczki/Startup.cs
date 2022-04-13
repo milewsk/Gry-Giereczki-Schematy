@@ -56,6 +56,7 @@ namespace GryGiereczki
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     _configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 

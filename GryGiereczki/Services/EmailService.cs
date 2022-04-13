@@ -23,6 +23,16 @@ namespace GryGiereczki.Services
 
             await SendEmail(userEmailOptions);
         }
+
+
+        public async Task SendEmailForEmailConfirmation(UserEmailOptions userEmailOptions)
+        {
+            userEmailOptions.Subject = UpdatePlaceHolders("Cześć {{UserName}}, Potwierdź swój adres email", userEmailOptions.PlaceHolders);
+            userEmailOptions.Body = UpdatePlaceHolders(GetEmailBody("EmailConfirm"), userEmailOptions.PlaceHolders);
+
+            await SendEmail(userEmailOptions);
+        }
+
         public EmailService(IOptions<SMTPConfigModel> smtpConfig)
         {
             _smtpConfig = smtpConfig.Value;

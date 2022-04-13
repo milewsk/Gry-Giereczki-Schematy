@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GryGiereczki.Controllers
 {
@@ -47,8 +48,13 @@ namespace GryGiereczki.Controllers
                 
             };
 
+            _repository.Create(_user);
 
-            return Created("success", _repository.Create(_user));
+            var emailConfirmToken = _jwtService.Generate(_user.Id); //token do wysyłania potwierdzenia na maila
+            _repository.SendEmailConfirmationEmail(_user, emailConfirmToken);
+
+            return Ok(); //można zwrócić usera
+            //return Created("success", _repository.Create(_user));
         }
 
         [HttpPost("login")]
@@ -121,6 +127,7 @@ namespace GryGiereczki.Controllers
             });
         }
 
+        /*
         public async void Index()
         {
             UserEmailOptions options = new UserEmailOptions
@@ -133,6 +140,38 @@ namespace GryGiereczki.Controllers
             };
 
             await _emailService.SendTestEmail(options);
+        } */
+
+
+
+        //XDDDD
+        /*
+        [HttpGet("confirm-email")]
+        public async Task ConfirmEmail(int id, string token)
+        {
+            if(!string.IsNullOrEmpty(token))
+            {
+                //await _repository.ConfirmEmail(id, token);
+                _repository.GetById(id).IsEmailConfirmed = true;
+            }
+        }*/
+
+
+        //2d
+        [HttpGet("confirm-email")]
+        public IActionResult ConnfirmEmail(int uid, string token)
+        {
+            var emailConfirmToken = _jwtService.Generate(uid);
+            if (token == emailConfirmToken)
+            {
+                _repository.ConfirmEmailInDataBase(uid);
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(new { message = "Token is unactive" });
+            }
         }
+
     }
 }
