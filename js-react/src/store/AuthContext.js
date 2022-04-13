@@ -53,8 +53,12 @@ export const AuthContextProvider = (props) => {
 
   const isLoggedIn = !!token;
 
+  console.log(isLoggedIn);
+  console.log(logoutTimer);
+
   const logoutHandler = useCallback(() => {
     setToken(null);
+
     localStorage.removeItem("token");
     localStorage.removeItem("expirationTime");
 

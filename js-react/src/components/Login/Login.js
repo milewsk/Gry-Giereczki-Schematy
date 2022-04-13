@@ -10,7 +10,7 @@ import AuthContext from "../../store/AuthContext";
 import Card from "../UI/Card/Card";
 import Button from "../UI/Button/Button";
 import classes from "./Login.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import useInput from "../../hooks/use-input";
 import useInputSubmit from "../../hooks/use-input-submit";
 
@@ -43,6 +43,8 @@ import useInputSubmit from "../../hooks/use-input-submit";
 
 const Login = (props) => {
   const authCtx = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const usernameRef = useRef();
   const passwordRef = useRef();
@@ -107,6 +109,8 @@ const Login = (props) => {
   }
 
   const submitHandler = (event) => {
+    event.preventDefault();
+
     const enteredUsername = usernameRef.current.value;
     const enteredPassword = passwordRef.current.value;
 
@@ -121,45 +125,50 @@ const Login = (props) => {
     }
 
     // if something is wrong don't send and change anything
-    if (!isPasswordValid && !isUsernameValid) {
-      return;
-    }
+    // if (!isPasswordValid && !isUsernameValid) {
+    //   return;
+    // }
 
-    setIsLoading(true);
+    //  setIsLoading(true);
 
-    fetch("https://localhost:44342/api/auth/login", {
-      method: "POST",
-      body: JSON.stringify({
-        Nick: enteredUsername,
-        Password: enteredPassword,
-      }),
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return response.json().then((data) => {
-            let errorMessage = "Authentication failed";
+    // fetch("https://localhost:44342/api/auth/login", {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     Nick: enteredUsername,
+    //     Password: enteredPassword,
+    //   }),
+    // })
+    //   .then((response) => {
+    //     if (response.ok) {
+    //       return response.json();
+    //     } else {
+    //       // return response.json().then((data) => {
+    //       //   let errorMessage = "Authentication failed";
 
-            throw new Error(errorMessage);
-          });
-        }
-      })
-      .then((data) => {
-        if (data.message === "success login") {
-          const expirationTime = new Date(new Date().getTime() + Number(60000));
+    //       //   throw new Error(errorMessage);
+    //       //});
+    //       let errorMessage = "authentication failed";
+    //       throw new Error(errorMessage);
+    //     }
+    //   })
+    //   .then((data) => {
+    //     if (data.message === "success login") {
+    //       const expirationTime = new Date(new Date().getTime() + Number(60000));
 
-          authCtx.onLogin(232123, expirationTime.toISOString());
-        }
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
+    //       authCtx.onLogin(232123, expirationTime.toISOString());
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     alert(error.message);
+    //   });
 
+    const expirationTime = new Date(new Date().getTime() + Number(60000));
+    console.log(expirationTime);
+    authCtx.onLogin(232123, expirationTime.toISOString());
     // authCtx.onLogin(usernameState.value, passwordState.value);
-    authCtx.onLogin(enteredUsername, enteredPassword);
+    // authCtx.onLogin(enteredUsername, enteredPassword);
 
-    setIsLoading(false);
+    // setIsLoading(false);
   };
 
   return (

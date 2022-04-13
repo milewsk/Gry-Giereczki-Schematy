@@ -43,45 +43,52 @@ const Register = (props) => {
   }, [isPasswordValid, isUsernameValid]);
 
   const submitHandler = (event) => {
-    setIsLoading(true);
+    event.preventDefault();
+    //   setIsLoading(true);
 
-    fetch("https://localhost:44342/api/auth/register", {
-      method: "POST",
-      body: JSON.stringify({
-        Nick: enteredUsername,
-        Password: enteredPassword,
-        ConfirmPassword: enteredPassword,
-        Email: "konrad@gmail.com",
-        Name: "",
-        Lastname: "",
-        DateOfBirth: 12,
-      }),
-    })
-      .then((response) => {
-        if (response.ok) {
-          console.log(response);
-          return response.json();
-        } else {
-          return response.json().then((data) => {
-            let errorMessage = "Authentication failed";
+    // fetch("https://localhost:44342/api/auth/register", {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     Nick: enteredUsername,
+    //     Password: enteredPassword,
+    //     ConfirmPassword: enteredPassword,
+    //     Email: "konrad@gmail.com",
+    //     Name: "",
+    //     Lastname: "",
+    //     DateOfBirth: 12,
+    //   }),
+    // })
+    //   .then((response) => {
+    //     if (response.ok) {
+    //       console.log(response);
+    //       return response.json();
+    //     } else {
+    //       return response.json().then((data) => {
+    //         let errorMessage = "Authentication failed";
 
-            throw new Error(errorMessage);
-          });
-        }
-      })
-      .then((data) => {
-        if (data.message === "success login") {
-          console.log(data);
-          const expirationTime = new Date(new Date().getTime() + Number(60000));
+    //         throw new Error(errorMessage);
+    //       });
+    //     }
+    //   })
+    //   .then((data) => {
+    //     if (data.message === "success login") {
+    //       console.log(data);
+    //       const expirationTime = new Date(new Date().getTime() + Number(60000));
 
-          authCtx.onLogin(232123, expirationTime.toISOString());
-        }
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
+    //       authCtx.onLogin(232123, expirationTime.toISOString());
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     alert(error.message);
+    //   });
 
-    setIsLoading(false);
+    const expirationTime = new Date(new Date().getTime() + Number(600000));
+
+    console.log("register");
+
+    authCtx.onLogin(232123, expirationTime.toISOString());
+
+    //  setIsLoading(false);
   };
 
   return (
