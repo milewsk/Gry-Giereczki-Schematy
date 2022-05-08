@@ -14,33 +14,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 import useInput from "../../hooks/use-input";
 import useInputSubmit from "../../hooks/use-input-submit";
 
-// const usernameReducer = (state, action) => {
-//   if (action.type === "USER_INPUT") {
-//     return { value: action.value, isValid: action.value.includes("@") };
-//   }
-//   if (action.type === "INPUT_BLUR") {
-//     return { value: state.value, isValid: state.value.includes("@") };
-//   }
-// };
-
-// const usernameReducer = (state, action) => {
-//   if (action.type === "USER_INPUT") {
-//     return { value: action.value, isValid: action.value.trim().length > 6 };
-//   }
-//   if (action.type === "INPUT_BLUR") {
-//     return { value: state.value, isValid: state.value.trim().length > 6 };
-//   }
-// };
-
-// const passwordReducer = (state, action) => {
-//   if (action.type === "USER_INPUT") {
-//     return { value: action.value, isValid: action.value.trim().length > 6 };
-//   }
-//   if (action.type === "INPUT_BLUR") {
-//     return { value: state.value, isValid: state.value.trim().length > 6 };
-//   }
-// };
-
 const Login = (props) => {
   const authCtx = useContext(AuthContext);
 
@@ -53,45 +26,6 @@ const Login = (props) => {
   const [isUsernameValid, setIsUsernameValid] = useState(true);
 
   const [isLoading, setIsLoading] = useState(false);
-
-  // const [formIsValid, setFormIsValid] = useState(false);
-  // const [usernameState, dispatchUsername] = useReducer(usernameReducer, {
-  //   value: "",
-  //   isValid: null,
-  // });
-  // const [passwordState, dispatchPassword] = useReducer(passwordReducer, {
-  //   value: "",
-  //   isValid: null,
-  // });
-
-  // useEffect(() => {
-  //   const identifier = setTimeout(() => {
-  //     setFormIsValid(usernameState.isValid && passwordState.isValid);
-  //   }, 500);
-  //   return () => {
-  //     clearTimeout(identifier);
-  //   };
-  // }, [usernameState.isValid, passwordState.isValid]);
-
-  // const usernameChangeHandler = (event) => {
-  //   dispatchUsername({ type: "USER_INPUT", value: event.target.value });
-
-  //   setFormIsValid(usernameState.isValid && passwordState.isValid);
-  // };
-
-  // const passwordChangeHandler = (event) => {
-  //   dispatchPassword({ type: "USER_INPUT", value: event.target.value });
-
-  //   setFormIsValid(passwordState.isValid && usernameState.isValid);
-  // };
-
-  // const validateUsernameHandler = () => {
-  //   dispatchUsername({ type: "INPUT_BLUR" });
-  // };
-
-  // const validatePasswordHandler = () => {
-  //   dispatchPassword({ type: "INPUT_BLUR" });
-  // };
 
   // Submit input
   const onFocusUsernameHandler = () => {
@@ -131,36 +65,38 @@ const Login = (props) => {
 
     //  setIsLoading(true);
 
-    // fetch("https://localhost:44342/api/auth/login", {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     Nick: enteredUsername,
-    //     Password: enteredPassword,
-    //   }),
-    // })
-    //   .then((response) => {
-    //     if (response.ok) {
-    //       return response.json();
-    //     } else {
-    //       // return response.json().then((data) => {
-    //       //   let errorMessage = "Authentication failed";
+    fetch("https://localhost:44342/api/Auth/login", {
+      method: "POST",
+      body: JSON.stringify({
+        Nick: enteredUsername,
+        Password: enteredPassword,
+      }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log(response);
+          return response.json();
+        } else {
+          // return response.json().then((data) => {
+          //   let errorMessage = "Authentication failed";
 
-    //       //   throw new Error(errorMessage);
-    //       //});
-    //       let errorMessage = "authentication failed";
-    //       throw new Error(errorMessage);
-    //     }
-    //   })
-    //   .then((data) => {
-    //     if (data.message === "success login") {
-    //       const expirationTime = new Date(new Date().getTime() + Number(60000));
+          //   throw new Error(errorMessage);
+          //});
+          let errorMessage = "authentication failed";
+          throw new Error(errorMessage);
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        if (data.message === "success login") {
+          const expirationTime = new Date(new Date().getTime() + Number(60000));
 
-    //       authCtx.onLogin(232123, expirationTime.toISOString());
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     alert(error.message);
-    //   });
+          authCtx.onLogin(232123, expirationTime.toISOString());
+        }
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
 
     const expirationTime = new Date(new Date().getTime() + Number(60000));
     console.log(expirationTime);
