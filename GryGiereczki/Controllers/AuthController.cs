@@ -5,6 +5,8 @@ using GryGiereczki.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GryGiereczki.Controllers
 {
@@ -14,10 +16,12 @@ namespace GryGiereczki.Controllers
     {
         private readonly IUserRepository _repository;
         private readonly JwtService _jwtService;
-        public AuthController(IUserRepository repository, JwtService jwtService)
+        private readonly IEmailService _emailService;
+        public AuthController(IUserRepository repository, JwtService jwtService, IEmailService emailService)
         {
             _repository = repository;
             _jwtService = jwtService;
+            _emailService = emailService;
         }
 
         [HttpPost("register")]
@@ -39,17 +43,25 @@ namespace GryGiereczki.Controllers
                 Name = user.Name,
                 Lastname = user.Lastname,
                 DateOfBirth = user.DateOfBirth,
-                Avatar = "test.jpg"
+                Avatar = "test.jpg",
+                IsEmailConfirmed = false
                 
             };
 
+            _repository.Create(_user);
 
-            return Created("success", _repository.Create(_user));
+            var emailConfirmToken = _jwtService.Generate(_user.Id); //token do wysyłania potwierdzenia na maila
+            _repository.SendEmailConfirmationEmail(_user, emailConfirmToken);
+
+            return Ok(); //można zwrócić usera
+            //return Created("success", _repository.Create(_user));
         }
 
         [HttpPost("login")]
         public IActionResult Login(LoginVM loginVM)
         {
+            //Index();
+
 
             var user = _repository.GetByEmail(loginVM.Email);
             if (user == null)
@@ -61,6 +73,11 @@ namespace GryGiereczki.Controllers
             if (!BCrypt.Net.BCrypt.Verify(loginVM.Password, user.Password))
             {
                 return BadRequest(new { message = "Invalid password" });
+            }
+
+            if(!user.IsEmailConfirmed)
+            {
+                return BadRequest(new { message = "Email not confirmed" });
             }
 
             var jwt = _jwtService.Generate(user.Id);
@@ -110,7 +127,51 @@ namespace GryGiereczki.Controllers
             });
         }
 
+        /*
+        public async void Index()
+        {
+            UserEmailOptions options = new UserEmailOptions
+            {
+                ToEmails = new List<string>() { "grygiereczki.net@gmail.com" },
+                PlaceHolders = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("{{UserName}}", "Rafał")
+                }
+            };
 
-        
+            await _emailService.SendTestEmail(options);
+        } */
+
+
+
+        //XDDDD
+        /*
+        [HttpGet("confirm-email")]
+        public async Task ConfirmEmail(int id, string token)
+        {
+            if(!string.IsNullOrEmpty(token))
+            {
+                //await _repository.ConfirmEmail(id, token);
+                _repository.GetById(id).IsEmailConfirmed = true;
+            }
+        }*/
+
+
+        //2d
+        [HttpGet("confirm-email")]
+        public IActionResult ConnfirmEmail(int uid, string token)
+        {
+            var emailConfirmToken = _jwtService.Generate(uid);
+            if (token == emailConfirmToken)
+            {
+                _repository.ConfirmEmailInDataBase(uid);
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(new { message = "Token is unactive" });
+            }
+        }
+
     }
 }
