@@ -63,48 +63,47 @@ const Login = (props) => {
     //   return;
     // }
 
-    //  setIsLoading(true);
+    setIsLoading(true);
 
-    fetch("https://localhost:44342/api/Auth/login", {
+    fetch("https://localhost:44342/api/auth/login", {
       method: "POST",
       body: JSON.stringify({
         Nick: enteredUsername,
         Password: enteredPassword,
       }),
+      headers: { "Content-Type": "application/json" },
     })
       .then((response) => {
         if (response.ok) {
-          console.log(response);
           return response.json();
         } else {
-          // return response.json().then((data) => {
-          //   let errorMessage = "Authentication failed";
+          return response.json().then((data) => {
+            let errorMessage = "Authentication failed";
 
-          //   throw new Error(errorMessage);
-          //});
-          let errorMessage = "authentication failed";
-          throw new Error(errorMessage);
+            throw new Error(errorMessage);
+          });
         }
       })
       .then((data) => {
         console.log(data);
         if (data.message === "success login") {
-          const expirationTime = new Date(new Date().getTime() + Number(60000));
+          console.log("logowanie pomyślne");
+          const expirationTime = new Date(
+            new Date().getTime() + Number(6000000)
+          );
 
           authCtx.onLogin(232123, expirationTime.toISOString());
+          console.log(authCtx.isLoggedIn);
         }
       })
       .catch((error) => {
         alert(error.message);
       });
 
-    const expirationTime = new Date(new Date().getTime() + Number(60000));
-    console.log(expirationTime);
-    authCtx.onLogin(232123, expirationTime.toISOString());
     // authCtx.onLogin(usernameState.value, passwordState.value);
     // authCtx.onLogin(enteredUsername, enteredPassword);
 
-    // setIsLoading(false);
+    setIsLoading(false);
   };
 
   return (
@@ -152,7 +151,6 @@ const Login = (props) => {
               type="submit"
               className={`${classes.btn_login}`}
               disabled={!formIsValid}
-              onClick={authCtx.onLogin}
             >
               Zaloguj się
             </Button>

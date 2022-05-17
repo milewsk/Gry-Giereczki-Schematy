@@ -44,51 +44,48 @@ const Register = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    //   setIsLoading(true);
+    setIsLoading(true);
 
-    // fetch("https://localhost:44342/api/auth/register", {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     Nick: enteredUsername,
-    //     Password: enteredPassword,
-    //     ConfirmPassword: enteredPassword,
-    //     Email: "konrad@gmail.com",
-    //     Name: "",
-    //     Lastname: "",
-    //     DateOfBirth: 12,
-    //   }),
-    // })
-    //   .then((response) => {
-    //     if (response.ok) {
-    //       console.log(response);
-    //       return response.json();
-    //     } else {
-    //       return response.json().then((data) => {
-    //         let errorMessage = "Authentication failed";
+    fetch("https://localhost:44342/api/auth/register", {
+      method: "POST",
+      body: JSON.stringify({
+        Nick: enteredUsername,
+        Password: enteredPassword,
+        ConfirmPassword: enteredPassword,
+        Email: "konrad@gmail.com",
+        Name: "konrad",
+        Lastname: "Konrad",
+        DateOfBirth: 12,
+      }),
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log(response);
+          return response.json();
+        } else {
+          console.log(response);
+          return response.json().then((data) => {
+            console.log(data);
+            let errorMessage = "Authentication failed";
 
-    //         throw new Error(errorMessage);
-    //       });
-    //     }
-    //   })
-    //   .then((data) => {
-    //     if (data.message === "success login") {
-    //       console.log(data);
-    //       const expirationTime = new Date(new Date().getTime() + Number(60000));
+            throw new Error(errorMessage);
+          });
+        }
+      })
+      .then((data) => {
+        if (data.Nick !== "") {
+          console.log(data);
+          const expirationTime = new Date(new Date().getTime() + Number(60000));
 
-    //       authCtx.onLogin(232123, expirationTime.toISOString());
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     alert(error.message);
-    //   });
+          authCtx.onLogin(232123, expirationTime.toISOString());
+        }
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
 
-    const expirationTime = new Date(new Date().getTime() + Number(600000));
-
-    console.log("register");
-
-    authCtx.onLogin(232123, expirationTime.toISOString());
-
-    //  setIsLoading(false);
+    setIsLoading(false);
   };
 
   return (
@@ -136,7 +133,6 @@ const Register = (props) => {
               type="submit"
               className={`${classes.btn_login}`}
               disabled={!formIsValid}
-              onClick={authCtx.onLogin}
             >
               Zarejestruj się
             </Button>
