@@ -155,9 +155,6 @@ namespace GryGiereczki.Migrations
                     b.Property<bool>("IsBanned")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsEmailConfirmed")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Lastname")
                         .HasColumnType("nvarchar(max)");
 

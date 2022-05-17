@@ -10,39 +10,14 @@ import AuthContext from "../../store/AuthContext";
 import Card from "../UI/Card/Card";
 import Button from "../UI/Button/Button";
 import classes from "./Login.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import useInput from "../../hooks/use-input";
 import useInputSubmit from "../../hooks/use-input-submit";
 
-// const usernameReducer = (state, action) => {
-//   if (action.type === "USER_INPUT") {
-//     return { value: action.value, isValid: action.value.includes("@") };
-//   }
-//   if (action.type === "INPUT_BLUR") {
-//     return { value: state.value, isValid: state.value.includes("@") };
-//   }
-// };
-
-// const usernameReducer = (state, action) => {
-//   if (action.type === "USER_INPUT") {
-//     return { value: action.value, isValid: action.value.trim().length > 6 };
-//   }
-//   if (action.type === "INPUT_BLUR") {
-//     return { value: state.value, isValid: state.value.trim().length > 6 };
-//   }
-// };
-
-// const passwordReducer = (state, action) => {
-//   if (action.type === "USER_INPUT") {
-//     return { value: action.value, isValid: action.value.trim().length > 6 };
-//   }
-//   if (action.type === "INPUT_BLUR") {
-//     return { value: state.value, isValid: state.value.trim().length > 6 };
-//   }
-// };
-
 const Login = (props) => {
   const authCtx = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const usernameRef = useRef();
   const passwordRef = useRef();
@@ -51,45 +26,6 @@ const Login = (props) => {
   const [isUsernameValid, setIsUsernameValid] = useState(true);
 
   const [isLoading, setIsLoading] = useState(false);
-
-  // const [formIsValid, setFormIsValid] = useState(false);
-  // const [usernameState, dispatchUsername] = useReducer(usernameReducer, {
-  //   value: "",
-  //   isValid: null,
-  // });
-  // const [passwordState, dispatchPassword] = useReducer(passwordReducer, {
-  //   value: "",
-  //   isValid: null,
-  // });
-
-  // useEffect(() => {
-  //   const identifier = setTimeout(() => {
-  //     setFormIsValid(usernameState.isValid && passwordState.isValid);
-  //   }, 500);
-  //   return () => {
-  //     clearTimeout(identifier);
-  //   };
-  // }, [usernameState.isValid, passwordState.isValid]);
-
-  // const usernameChangeHandler = (event) => {
-  //   dispatchUsername({ type: "USER_INPUT", value: event.target.value });
-
-  //   setFormIsValid(usernameState.isValid && passwordState.isValid);
-  // };
-
-  // const passwordChangeHandler = (event) => {
-  //   dispatchPassword({ type: "USER_INPUT", value: event.target.value });
-
-  //   setFormIsValid(passwordState.isValid && usernameState.isValid);
-  // };
-
-  // const validateUsernameHandler = () => {
-  //   dispatchUsername({ type: "INPUT_BLUR" });
-  // };
-
-  // const validatePasswordHandler = () => {
-  //   dispatchPassword({ type: "INPUT_BLUR" });
-  // };
 
   // Submit input
   const onFocusUsernameHandler = () => {
@@ -107,6 +43,8 @@ const Login = (props) => {
   }
 
   const submitHandler = (event) => {
+    event.preventDefault();
+
     const enteredUsername = usernameRef.current.value;
     const enteredPassword = passwordRef.current.value;
 
@@ -121,9 +59,9 @@ const Login = (props) => {
     }
 
     // if something is wrong don't send and change anything
-    if (!isPasswordValid && !isUsernameValid) {
-      return;
-    }
+    // if (!isPasswordValid && !isUsernameValid) {
+    //   return;
+    // }
 
     setIsLoading(true);
 
@@ -133,6 +71,7 @@ const Login = (props) => {
         Nick: enteredUsername,
         Password: enteredPassword,
       }),
+      headers: { "Content-Type": "application/json" },
     })
       .then((response) => {
         if (response.ok) {
@@ -146,10 +85,15 @@ const Login = (props) => {
         }
       })
       .then((data) => {
+        console.log(data);
         if (data.message === "success login") {
-          const expirationTime = new Date(new Date().getTime() + Number(60000));
+          console.log("logowanie pomyślne");
+          const expirationTime = new Date(
+            new Date().getTime() + Number(6000000)
+          );
 
           authCtx.onLogin(232123, expirationTime.toISOString());
+          console.log(authCtx.isLoggedIn);
         }
       })
       .catch((error) => {
@@ -157,7 +101,7 @@ const Login = (props) => {
       });
 
     // authCtx.onLogin(usernameState.value, passwordState.value);
-    authCtx.onLogin(enteredUsername, enteredPassword);
+    // authCtx.onLogin(enteredUsername, enteredPassword);
 
     setIsLoading(false);
   };
@@ -207,7 +151,6 @@ const Login = (props) => {
               type="submit"
               className={`${classes.btn_login}`}
               disabled={!formIsValid}
-              onClick={authCtx.onLogin}
             >
               Zaloguj się
             </Button>

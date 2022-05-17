@@ -18,7 +18,6 @@ using Newtonsoft.Json.Serialization;
 using GryGiereczki.Controllers;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
-using GryGiereczki.Models;
 
 namespace GryGiereczki
 {
@@ -26,10 +25,10 @@ namespace GryGiereczki
     {
         public Startup(IConfiguration configuration)
         {
-            _configuration = configuration;
+            Configuration = configuration;
         }
 
-        public IConfiguration _configuration { get; }
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -51,18 +50,19 @@ namespace GryGiereczki
             services.AddControllers();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<JwtService>();
-            services.AddScoped<IEmailService, EmailService>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    _configuration.GetConnectionString("DefaultConnection")));
-
+                    Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
 
+            //  services.AddTransient<IEmailSender, EmailSender>();
+            //   services.Configure<AuthMessageSenderOptions>(Configuration);
+            //    services.AddTransient<AuthController>();
 
-            services.Configure<SMTPConfigModel>(_configuration.GetSection("SMTPConfig"));
+            //services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -51,10 +51,15 @@ export const AuthContextProvider = (props) => {
 
   const [token, setToken] = useState(initialToken ? initialToken : "");
 
-  const isLoggedIn = !!token;
+  let isLoggedIn = !!token;
+
+  console.log(isLoggedIn);
+  console.log(logoutTimer);
 
   const logoutHandler = useCallback(() => {
     setToken(null);
+    isLoggedIn = false;
+
     localStorage.removeItem("token");
     localStorage.removeItem("expirationTime");
 
@@ -71,7 +76,10 @@ export const AuthContextProvider = (props) => {
 
   const loginHandler = (newToken, expirationTime) => {
     setToken(newToken);
+    isLoggedIn = true;
 
+    console.log(newToken);
+    console.log(expirationTime);
     localStorage.setItem("token", newToken);
     localStorage.setItem("expirationTime", expirationTime);
 

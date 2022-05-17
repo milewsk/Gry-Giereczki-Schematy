@@ -43,6 +43,7 @@ const Register = (props) => {
   }, [isPasswordValid, isUsernameValid]);
 
   const submitHandler = (event) => {
+    event.preventDefault();
     setIsLoading(true);
 
     fetch("https://localhost:44342/api/auth/register", {
@@ -52,17 +53,20 @@ const Register = (props) => {
         Password: enteredPassword,
         ConfirmPassword: enteredPassword,
         Email: "konrad@gmail.com",
-        Name: "",
-        Lastname: "",
+        Name: "konrad",
+        Lastname: "Konrad",
         DateOfBirth: 12,
       }),
+      headers: { "Content-Type": "application/json" },
     })
       .then((response) => {
         if (response.ok) {
           console.log(response);
           return response.json();
         } else {
+          console.log(response);
           return response.json().then((data) => {
+            console.log(data);
             let errorMessage = "Authentication failed";
 
             throw new Error(errorMessage);
@@ -70,7 +74,7 @@ const Register = (props) => {
         }
       })
       .then((data) => {
-        if (data.message === "success login") {
+        if (data.Nick !== "") {
           console.log(data);
           const expirationTime = new Date(new Date().getTime() + Number(60000));
 
@@ -129,7 +133,6 @@ const Register = (props) => {
               type="submit"
               className={`${classes.btn_login}`}
               disabled={!formIsValid}
-              onClick={authCtx.onLogin}
             >
               Zarejestruj się
             </Button>

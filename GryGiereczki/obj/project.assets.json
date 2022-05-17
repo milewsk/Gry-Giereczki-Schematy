@@ -9301,19 +9301,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DELL\\.nuget\\packages\\": {}
+    "C:\\Users\\Konrad\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DELL\\Desktop\\GryGiereczki - projekt zespołowy\\Gry-Giereczki-Schematy\\GryGiereczki\\GryGiereczki.csproj",
+      "projectUniqueName": "D:\\praca\\Gry-Giereczki-Schematy\\GryGiereczki\\GryGiereczki.csproj",
       "projectName": "GryGiereczki",
-      "projectPath": "C:\\Users\\DELL\\Desktop\\GryGiereczki - projekt zespołowy\\Gry-Giereczki-Schematy\\GryGiereczki\\GryGiereczki.csproj",
-      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DELL\\Desktop\\GryGiereczki - projekt zespołowy\\Gry-Giereczki-Schematy\\GryGiereczki\\obj\\",
+      "projectPath": "D:\\praca\\Gry-Giereczki-Schematy\\GryGiereczki\\GryGiereczki.csproj",
+      "packagesPath": "C:\\Users\\Konrad\\.nuget\\packages\\",
+      "outputPath": "D:\\praca\\Gry-Giereczki-Schematy\\GryGiereczki\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Konrad\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9416,7 +9416,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
       }
     }
   }

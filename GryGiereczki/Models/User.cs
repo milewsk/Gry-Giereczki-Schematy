@@ -25,8 +25,7 @@ namespace GryGiereczki.Models
         public string Avatar { get; set; }
         public string Description { get; set; }   
         public bool IsBanned { get; set; }
-        public bool IsEmailConfirmed { get; set; }
-
+        
         public List<Report> Reports { get; set; }
         public List<Blocked> Blockeds { get; set; }
         public List<Friend> Friends { get; set; }
