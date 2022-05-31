@@ -1,0 +1,6 @@
+.control input:focus {
+    outline: none;
+    border-color: #4f005f!important;
+    background: #f6dbfc!important;
+    opacity: 50;
+}
