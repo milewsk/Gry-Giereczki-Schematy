@@ -14,6 +14,7 @@ import Profile from "../Profile/Profile";
 import Ranking from "../Profile/Ranking/Ranking";
 import Achievements from "../Profile/Achievements/Achievements";
 import Details from "../Profile/Details/Details";
+import EditProfile from "../Profile/EditProfile/EditProfile";
 
 const MainContent = (props) => {
   const authCtx = useContext(AuthContext);
@@ -32,12 +33,13 @@ const MainContent = (props) => {
       {authCtx.isLoggedIn && (
         <div>
           <Routes>
-            <Route path="/" element={<></>}>
+            <Route path="/">
               <Route path="games" element={<Games></Games>}></Route>
               <Route path="game1" element={<KPN></KPN>}></Route>
               <Route path="game2" element={<Kostka></Kostka>}></Route>
               <Route path="game3" element={<Login></Login>}></Route>
               <Route path="profile" element={<Profile></Profile>}>
+                <Route path="edit-profile" element={<EditProfile></EditProfile>}></Route>
                 <Route path="details" element={<Details></Details>}></Route>
                 <Route path="ranking" element={<Ranking></Ranking>}></Route>
                 <Route

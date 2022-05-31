@@ -5,9 +5,9 @@ import classes from "./Profile.module.css";
 const Profile = (props) => {
     return (
         <Fragment>
-            <section className="container-md">
-                <div className="row row-cols-2 flex-shrink-0 list-unstyled ps-0">
-                    <div className="col-md-3 mt-4">
+            <section className="container-fluid">
+                <div className="row list-unstyled ps-0 mt-4">
+                    <div className="col-6 col-md-4 col-lg-3">
                         <li className="p-2">
                             <button className={classes.button_menu + " btn btn-group-toggle align-items-center rounded collapsed"}
                                     data-bs-toggle="collapse" data-bs-target="#accountCollapse"
@@ -20,6 +20,9 @@ const Profile = (props) => {
                                 </li>
                                 <li>
                                     <NavLink to="password">Zmień hasło</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="edit-profile">Edycja profilu</NavLink>
                                 </li>
                             </ul>
                         </li>
@@ -64,12 +67,11 @@ const Profile = (props) => {
                         </NavLink>
                     </li>
                     </div>
-                    <div className="col-md-9">
-
+                    <div className="col-6 col-md-8 col-lg-9">
+                        <Outlet></Outlet>
                     </div>
                 </div>
             </section>
-            <Outlet></Outlet>
         </Fragment>
     );
 };
