@@ -9,9 +9,9 @@ const Layout = (props) => {
   return (
     <Fragment>
       <Navbar></Navbar>
-      <MainContent>
+      <main>
         <Outlet></Outlet>
-      </MainContent>
+      </main>
       <Footer></Footer>
     </Fragment>
   );
