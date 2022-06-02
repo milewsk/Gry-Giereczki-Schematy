@@ -1,12 +1,34 @@
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { NavLink, Outlet, Link } from "react-router-dom";
 import classes from "./ChangePassword.module.css";
+import useInput from "../../../hooks/use-input";
 
 const ChangePassword = (props) => {
-  const isFormVaild = useState(false);
+  const [isFormVaild, setIsFormValid] = useState(false);
 
-  const oldPasswordRef = useRef("");
-  const newPasswordRef = useRef("");
+  const {
+    enteredValue: enteredOldPassword,
+    isInputValid: isOldPasswordVaild,
+    inputBlurrHandler: oldPasswordBlurrHandler,
+    inputValueHandler: oldPasswordValueHandler,
+    hasError: oldPasswordHasError,
+  } = useInput((value) => {
+    return value.trim().length > 6;
+  });
+
+  const {
+    enteredValue: enteredNewPassword,
+    isInputValid: isNewPasswordVaild,
+    inputBlurrHandler: newPasswordBlurrHandler,
+    inputValueHandler: newPasswordValueHandler,
+    hasError: newPasswordHasError,
+  } = useInput((value) => {
+    return value.trim().length > 6;
+  });
+
+  useEffect(() => {
+    const identifier = setTimeout(() => {}, 500);
+  }, [isNewPasswordVaild, isOldPasswordVaild]);
 
   const SubmitHandler = (event) => {
     event.PreventDefalut();
@@ -25,10 +47,20 @@ const ChangePassword = (props) => {
         </p>
         <form onSubmit={SubmitHandler}>
           <label>Stare hasło</label>
-          <input ref={oldPasswordRef} placeholder="Podaj stare hasło"></input>
+          <input
+            value={enteredOldPassword}
+            onChange={oldPasswordValueHandler}
+            onBlur={oldPasswordBlurrHandler}
+            placeholder="Podaj stare hasło"
+          ></input>
           <label>Nowe hasło</label>
-          <input ref={newPasswordRef} placeholder="Podaj nowe hasło"></input>
-          <button></button>
+          <input
+            value={enteredNewPassword}
+            onChange={newPasswordValueHandler}
+            onBlur={newPasswordBlurrHandler}
+            placeholder="Podaj nowe hasło"
+          ></input>
+          <button disabled={!isFormVaild}>Zmień</button>
         </form>
       </div>
     </Fragment>
