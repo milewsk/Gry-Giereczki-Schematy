@@ -31,6 +31,12 @@ const MainContent = (props) => {
         )}
         {authCtx.isLoggedIn && (
           //   <Routes>
+
+          //tutaj tylko outlet
+
+          // dodać do scieżki "/" element layout
+          // w nim przechowywać footera navbara i main content (miejsce na outlet)
+          // domyślną kartę, czy to wybór gry czy to jakąś nową stronę powitalną
           <Route path="/">
             <Route path="games" element={<Games></Games>}></Route>
             <Route path="game1" element={<KPN></KPN>}></Route>
