@@ -4,7 +4,7 @@ import GameContext from "../../store/GameContext";
 import Login from "../Login/Login";
 import Button from "../UI/Button/Button";
 import classes from "./MainContent.module.css";
-import { NavLink, Outlet, Route, Routes } from "react-router-dom";
+import { Navigate, NavLink, Outlet, Route, Routes } from "react-router-dom";
 import Kostka from "../Games/Kostka/Kostka";
 import KPN from "../Games/KPN/KPN";
 import Register from "../Login/Register";
@@ -21,36 +21,38 @@ const MainContent = (props) => {
 
   return (
     <main className={classes.main_content}>
-      {!authCtx.isLoggedIn && (
-        <Routes>
+      <Routes>
+        {!authCtx.isLoggedIn && (
           <Route path="/">
             <Route path="/login" element={<Login></Login>}></Route>
             <Route path="/register" element={<Register></Register>}></Route>
+            <Route index element={<Login></Login>}></Route>
           </Route>
-        </Routes>
-      )}
-
-      {authCtx.isLoggedIn && (
-        <div>
-          <Routes>
-            <Route path="/">
-              <Route path="games" element={<Games></Games>}></Route>
-              <Route path="game1" element={<KPN></KPN>}></Route>
-              <Route path="game2" element={<Kostka></Kostka>}></Route>
-              <Route path="game3" element={<Login></Login>}></Route>
-              <Route path="profile" element={<Profile></Profile>}>
-                <Route path="edit-profile" element={<EditProfile></EditProfile>}></Route>
-                <Route path="details" element={<Details></Details>}></Route>
-                <Route path="ranking" element={<Ranking></Ranking>}></Route>
-                <Route
-                  path="achievements"
-                  element={<Achievements></Achievements>}
-                ></Route>
-              </Route>
+        )}
+        {authCtx.isLoggedIn && (
+          //   <Routes>
+          <Route path="/">
+            <Route path="games" element={<Games></Games>}></Route>
+            <Route path="game1" element={<KPN></KPN>}></Route>
+            <Route path="game2" element={<Kostka></Kostka>}></Route>
+            <Route path="game3" element={<Login></Login>}></Route>
+            <Route path="profile" element={<Profile></Profile>}>
+              <Route
+                path="edit-profile"
+                element={<EditProfile></EditProfile>}
+              ></Route>
+              <Route path="details" element={<Details></Details>}></Route>
+              <Route path="ranking" element={<Ranking></Ranking>}></Route>
+              <Route
+                path="achievements"
+                element={<Achievements></Achievements>}
+              ></Route>
             </Route>
-          </Routes>
-        </div>
-      )}
+            <Route index element={<Navigate to="games"></Navigate>}></Route>
+          </Route>
+          //   </Routes>
+        )}
+      </Routes>
     </main>
   );
 };
