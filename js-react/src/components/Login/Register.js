@@ -33,6 +33,7 @@ const Register = (props) => {
 
   const [formIsValid, setFormIsValid] = useState(false);
 
+  //checking when valid value was changed
   useEffect(() => {
     const identifier = setTimeout(() => {
       setFormIsValid(isUsernameValid && isPasswordValid);

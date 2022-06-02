@@ -4,8 +4,10 @@ import classes from "./ChangePassword.module.css";
 import useInput from "../../../hooks/use-input";
 
 const ChangePassword = (props) => {
+  //  state for form Validation
   const [isFormVaild, setIsFormValid] = useState(false);
 
+  //  Inputs
   const {
     enteredValue: enteredOldPassword,
     isInputValid: isOldPasswordVaild,
@@ -26,12 +28,28 @@ const ChangePassword = (props) => {
     return value.trim().length > 6;
   });
 
+  // checking when valid value was changed
   useEffect(() => {
-    const identifier = setTimeout(() => {}, 500);
+    const identifier = setTimeout(() => {
+      setIsFormValid(isNewPasswordVaild && isOldPasswordVaild);
+    }, 500);
+
+    return () => {
+      clearTimeout(identifier);
+    };
   }, [isNewPasswordVaild, isOldPasswordVaild]);
 
+  //   Event Handler
   const SubmitHandler = (event) => {
     event.PreventDefalut();
+
+    if (enteredNewPassword === enteredOldPassword) {
+      //bład
+    }
+
+    //zapytanie do bazy
+    // 1. o obecne hasło => porównanie => wysłanie rządania zmiany => informacja zwrotna => ew. przekierowanie i wylogowanie
+    // 2. wszystko razem => informacja zwrotna => ew. przekierowanie i wylogowanie
   };
 
   return (
