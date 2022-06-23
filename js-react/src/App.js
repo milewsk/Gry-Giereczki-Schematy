@@ -6,15 +6,15 @@ import { Route, Routes, NavLink, Navigate } from "react-router-dom";
 import React, { useContext } from "react";
 import AuthContext from "./store/AuthContext";
 
-import Register from ".components/Login/Register";
+import Register from "./components/Login/Register";
 import Login from "./components/Login/Login";
 // import { Home } from "../../Home";
 import Games from "./components/Games/Games";
 import Profile from "./components/Profile/Profile";
-import Ranking from ".components/Profile/Ranking/Ranking";
-import Achievements from ".components/Profile/Achievements/Achievements";
-import Details from ".components/Profile/Details/Details";
-import EditProfile from ".components/Profile/EditProfile/EditProfile";
+import Ranking from "./components/Profile/Ranking/Ranking";
+import Achievements from "./components/Profile/Achievements/Achievements";
+import Details from "./components/Profile/Details/Details";
+import EditProfile from "./components/Profile/EditProfile/EditProfile";
 import Layout from "./components/Layout/Layout";
 import Kostka from "./components/Games/Kostka/Kostka";
 import KPN from "./components/Games/KPN/KPN";
@@ -32,6 +32,7 @@ function App() {
             <Route path="/register" element={<Register></Register>}></Route>
             {/* strona powitalna */}
             <Route index element={<Login></Login>}></Route>
+            <Route path="*" element={<Navigate to="/"></Navigate>}></Route>
           </Route>
         )}
         {authCtx.isLoggedIn && (

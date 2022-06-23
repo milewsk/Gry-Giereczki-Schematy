@@ -9,7 +9,7 @@ const Layout = (props) => {
   return (
     <Fragment>
       <Navbar></Navbar>
-      <main>
+      <main className={classes.main}>
         <Outlet></Outlet>
       </main>
       <Footer></Footer>

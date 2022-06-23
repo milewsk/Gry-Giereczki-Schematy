@@ -53,7 +53,7 @@ const Register = (props) => {
         Nick: enteredUsername,
         Password: enteredPassword,
         ConfirmPassword: enteredPassword,
-        Email: "konrad@gmail.com",
+        Email: "konrad1@gmail.com",
         Name: "konrad",
         Lastname: "Konrad",
         DateOfBirth: 12,
